@@ -1,0 +1,21 @@
+QPushButton {
+    border-radius: 25px;
+    color: blue;
+    border: 2px solid blue;
+}
+
+QPushButton:hover {
+    background-color: rgb(218, 237, 223);
+}
+
+
+QLabel {
+    color: blue;
+    text-shadow: 5px 5px #558abb;
+    
+}
+
+QLabel#innotech {
+    color: blue;
+    
+}

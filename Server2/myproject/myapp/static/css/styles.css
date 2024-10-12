@@ -1,0 +1,645 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: height 1.3s ease;
+}
+
+body.expanded {
+    height: 190vh;
+}
+
+.container {
+    background: linear-gradient(to bottom, white, #f5f5f5);
+    border-radius: 20px;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 300px;
+    height: 520px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: -70px;
+    position: relative;
+}
+
+.container2 {
+    background: linear-gradient(to bottom, white, #f5f5f5);
+    border-radius: 20px;
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 300px;
+    height: 520px;
+    text-align: center;
+    margin-top: -70px;
+    overflow: hidden;
+    transition: height 1.2s ease, margin-top 1.2s ease;
+    position: relative;
+}
+
+.container2.expanded {
+    height: 1240px;
+    margin-top: 0px;
+}
+
+.container2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    pointer-events: none;
+}
+
+.container2.expanded::after {
+    display: none;
+}
+
+#toggleButton {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background-color: #0a3164;
+    color: white;
+    border: none;
+    border-radius: 0 0 20px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    opacity: 0.7;
+    z-index: 1;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+#toggleButton:hover {
+    background-color: #356bbb;
+    opacity: 1;
+}
+
+.container2.expanded #toggleButton {
+    display: none;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 17px;
+}
+
+.header img {
+    width: 280px;
+    height: 40px;
+    margin-top: 30px;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.main h2 {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #313131;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 21px;
+}
+
+.input-group label {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.input-group input {
+    width: 33%;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    box-sizing: border-box;
+    font-size: 21px;
+}
+
+.input-group input:focus {
+    border: 2px solid #1e599c;
+    outline: none;
+}
+
+.input-group span {
+    margin-left: 12px;
+}
+
+.input1{
+    margin-left: 10px;
+}
+
+.input2{
+    margin-left: 25px;
+}
+
+.input-group2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group2 label {
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.input-group2 input {
+    width: 33%;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    box-sizing: border-box;
+    font-size: 21px;
+    margin-top: 18px;
+    margin-bottom: 26px;
+}
+
+.input-group2 input:focus {
+    border: 2px solid #1e599c;
+    outline: none;
+}
+
+.input-group2 span {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.todo-lists {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-top: 21px;
+}
+
+.todo-list {
+    margin-top: 21px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+
+.status-container {
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали по центру */
+    justify-content: center; /* Выравнивание по горизонтали по центру */
+    margin-top: 22px;
+    margin-bottom: 12px;
+}
+
+.status_circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-right: 7px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.status_info {
+    font-size: 16px;
+    font-weight: bold;
+    color: #313131;
+    color: #d88200;
+    color: #0e7c26;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.status-container2 {
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали по центру */
+    justify-content: center; /* Выравнивание по горизонтали по центру */
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.status_info2 {
+    font-size: 15px;
+    color: #313131;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.todo-list input {
+    margin-right: 10px;
+}
+
+.buttons {
+    margin-bottom: 80px;
+}
+
+.status {
+    margin-top: 20px;
+}
+
+.status p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.status button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#fillerStatus {
+    color: black;
+}
+
+.input-group2 select {
+    width: 60%;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 21px;
+    color: black;
+    background-color: #FFFFFF;
+    margin-top: 18px;
+    margin-bottom: 26px;
+}
+
+.input-group2 select:focus {
+    border: 2px solid #1e599c;
+    outline: none;
+}
+
+
+.switch {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    position: relative;
+    display: inline-block;
+    width: 75px;
+    height: 33px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid #24272b;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #30700b;
+}
+
+input:checked + .slider:before {
+    transform: translateX(33px);
+}
+
+
+
+#statusText {
+    margin-top: 6px;
+    margin-left: 5px;
+    margin-right: 25px;
+    font-size: 18px;
+    color: #313131;
+    color: #116d25;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: -5px; /* Расстояние от низа контейнера */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 17px 20px 30px; /* Отступы справа и слева */
+}
+
+.icon-button img {
+    width: 45px;
+    height: 45px;
+    transition: transform 0.3s, filter 0.0s;
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+}
+
+.icon-button:hover img {
+    transform: scale(1.5); /* Увеличение иконки на 50% */
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.3));
+}
+
+.language-buttons-group {
+    margin-top: 5px; /* Увеличенное расстояние между кнопками */
+}
+
+.language-buttons {
+    margin-bottom: 20px; /* Увеличенное расстояние между кнопками */
+}
+
+.language-buttons button {
+    width: 140px; /* Увеличенная ширина */
+    height: 60px; /* Увеличенная высота */
+    background: linear-gradient(to bottom, #1e599c, #113e68); /* Темно-синий градиент */
+    border: none;
+    border-radius: 15px; /* Скругленные углы */
+    color: white;;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+    transition: transform 0.3s;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.language-buttons button:hover {
+    transform: scale(1.1); /* Легкое увеличение при наведении */
+}
+
+.settings-buttons2 button {
+    width: 120px; /* Увеличенная ширина */
+    height: 60px; /* Увеличенная высота */
+    margin: 5px;
+    background: linear-gradient(to bottom, #1e599c, #113e68); /* Темно-синий градиент */
+    border: none;
+    border-radius: 15px; /* Скругленные углы */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+    transition: transform 0.3s;
+    line-height: 1.2; /* Контроль межстрочного интервала */
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding: 10px;
+}
+
+.settings-buttons2 button:hover {
+    transform: scale(1.1); /* Легкое увеличение при наведении */
+}
+
+.control-buttons {
+    margin-bottom: 12px; /* Увеличенное расстояние между кнопками */
+}
+
+.control-buttons button {
+    width: 190px; /* Увеличенная ширина */
+    height: 60px; /* Увеличенная высота */
+    margin: 5px;
+    background: linear-gradient(to bottom, #1e599c, #113e68); /* Темно-синий градиент */
+    border: none;
+    border-radius: 15px; /* Скругленные углы */
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+    transition: transform 0.3s;
+    line-height: 1.2; /* Контроль межстрочного интервала */
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.control-buttons button:hover {
+    transform: scale(1.1); /* Легкое увеличение при наведении */
+}
+
+.divider {
+    width: 50%;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1); /* Полупрозрачная серая линия */
+    margin: 0 auto;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.confirm-dialog {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 120%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.confirm-dialog-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.confirm-dialog-content p {
+    margin-bottom: 20px;
+}
+
+.confirm-dialog-content button {
+    width: 130px;
+    height: 60px;
+    margin: 5px;
+    padding: 10px 20px;
+    background: linear-gradient(to bottom, #1e599c, #113e68);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.confirm-dialog-content button:hover {
+    background-color: #3672b3;
+}
+
+.input-group2 img {
+    width: 210px;
+    height: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+.main2 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.main2 h2 {
+    font-size: 18px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    color: #313131;
+}
+
+.information {
+    margin: -20px 20px;
+}
+
+.paragraph1 {
+    font-size: 15px;
+    text-indent: 20px;
+    text-align: justify;
+    margin-bottom: 21px;
+    word-wrap: break-word; 
+    font-style: italic;
+}
+
+.paragraph2 {
+    margin-bottom: 15px;
+}
+
+.paragraph3 {
+    margin-left: 0px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    text-align: right;
+    font-style: italic;
+}
+
+
+.paragraph3 a {
+    text-decoration: none; /* Убирает подчеркивание */
+    font-weight: bold;
+    color: #084d9c; /* Тёмно-синий цвет */
+}
+
+.paragraph3 a:hover {
+    color: #1570d8; /* Тёмно-синий цвет */
+}
+
+
+
+.settings-buttons2 {
+    position: absolute;
+    bottom: 62px; /* 40px (высота divider) + 22px (отступ) */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    opacity: 0; /* Скрыть кнопки по умолчанию */
+    pointer-events: none; /* Отключить взаимодействие с кнопками по умолчанию */
+    transition: opacity 0.3s ease 0.6s, pointer-events 0.3s ease 1s; /* Задержка в 1 секунду */
+}
+
+
+.container .settings-buttons2 {
+    opacity: 1; /* Показать кнопки в раскрытом состоянии */
+    pointer-events: auto; /* Включить взаимодействие с кнопками в раскрытом состоянии */
+}
+
+.container2 .settings-buttons2 {
+    opacity: 0; /* Показать кнопки в раскрытом состоянии */
+    pointer-events: none; /* Включить взаимодействие с кнопками в раскрытом состоянии */
+}
+
+
+.container2.expanded .settings-buttons2 {
+    opacity: 1; /* Показать кнопки в раскрытом состоянии */
+    pointer-events: auto; /* Включить взаимодействие с кнопками в раскрытом состоянии */
+}
+
+.settings-buttons2 button {
+    width: 120px; /* Увеличенная ширина */
+    height: 60px; /* Увеличенная высота */
+    margin: 5px;
+    background: linear-gradient(to bottom, #1e599c, #113e68); /* Темно-синий градиент */
+    border: none;
+    border-radius: 15px; /* Скругленные углы */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+    transition: transform 0.3s;
+    line-height: 1.2; /* Контроль межстрочного интервала */
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.settings-buttons2 button:hover {
+    transform: scale(1.1); /* Легкое увеличение при наведении */
+}
+
+.settings-buttons2 .apply-default-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px; /* Отступ между кнопками "Apply" и "Default" и кнопкой "Back" */
+}
+
+.settings-buttons2 .apply-default-buttons button {
+    width: 45%; /* Ширина кнопок "Apply" и "Default" */
+}

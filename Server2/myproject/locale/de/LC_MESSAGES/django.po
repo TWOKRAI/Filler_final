@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-06 10:53+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO+ZONE\n"
+"Last-Translator: FULL NAME EMAIL@ADDRESS\n"
+"Language-Team: LANGUAGE LL@li.org\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: myapp/templates/control.html:18
+msgid "Robot control"
+msgstr "Robotersteuerung"
+
+#: myapp/templates/control.html:23
+msgid "Robot calibration"
+msgstr "Roboterkalibrierung"
+
+#: myapp/templates/control.html:26
+msgid "Pull out the panel"
+msgstr "Bedienfeld herausziehen"
+
+#: myapp/templates/control.html:29
+msgid "Motor power supply"
+msgstr "Motorstromversorgung"
+
+#: myapp/templates/control.html:35 myapp/templates/settings1.html:27
+#: myapp/templates/settings2.html:88
+msgid "Back"
+msgstr "Zurück"
+
+#: myapp/templates/control.html:43 myapp/templates/settings2.html:99
+#: myapp/templates/settings2.html:108
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: myapp/templates/control.html:44 myapp/templates/settings2.html:100
+#: myapp/templates/settings2.html:109
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: myapp/templates/control.html:51
+msgid "Do you want to start calibrating the robot?"
+msgstr "Möchten Sie die Roboterkalibrierung starten?"
+
+#: myapp/templates/control.html:52
+msgid "Do you want to pull out the panel?"
+msgstr "Möchten Sie das Bedienfeld herausziehen?"
+
+#: myapp/templates/control.html:53
+msgid "Do you want to turn on/off the power to the motors?"
+msgstr "Möchten Sie die Stromversorgung der Motoren ein-/ausschalten?"
+
+#: myapp/templates/index.html:6
+msgid "Innotech filler"
+msgstr "Innotech Füller"
+
+#: myapp/templates/index.html:13 myapp/templates/settings1.html:15
+msgid "Logo"
+msgstr "Logo"
+
+#: myapp/templates/index.html:16
+msgid "Filler Parameters"
+msgstr "Füllparameter"
+
+#: myapp/templates/index.html:20
+msgid "Drink 1"
+msgstr "Getränk 1"
+
+#: myapp/templates/index.html:22 myapp/templates/index.html:27
+msgid "ml"
+msgstr "ml"
+
+#: myapp/templates/index.html:25
+msgid "Drink 2"
+msgstr "Getränk 2"
+
+#: myapp/templates/index.html:45 myapp/templates/settings1.html:18
+msgid "Language Settings"
+msgstr "Spracheinstellungen"
+
+#: myapp/templates/index.html:46
+msgid "System Settings"
+msgstr "Systemeinstellungen"
+
+#: myapp/templates/index.html:47
+msgid "Robot Settings"
+msgstr "Robotereinstellungen"
+
+#: myapp/templates/index.html:51
+msgid "ON"
+msgstr "EIN"
+
+#: myapp/templates/index.html:52
+msgid "OFF"
+msgstr "AUS"
+
+#: myapp/templates/index.html:54
+msgid "System ready"
+msgstr "System bereit"
+
+#: myapp/templates/index.html:55
+msgid "System not calibrated"
+msgstr "System nicht kalibriert"
+
+#: myapp/templates/index.html:56
+msgid "Info 2"
+msgstr "Info 2"
+
+#: myapp/templates/index.html:57
+msgid "Info 3"
+msgstr "Info 3"
+
+#: myapp/templates/index.html:58
+msgid "Info 4"
+msgstr "Info 4"
+
+#: myapp/templates/settings1.html:8
+msgid "Innotech filler - Language Settings"
+msgstr "Innotech Füller - Spracheinstellungen"
+
+#: myapp/templates/settings1.html:22
+msgid "English"
+msgstr "Englisch"
+
+#: myapp/templates/settings1.html:23
+msgid "Русский"
+msgstr "Russisch"
+
+#: myapp/templates/settings1.html:24
+msgid "Deutsch"
+msgstr "Deutsch"
+
+#: myapp/templates/settings2.html:18
+msgid "Robot parameters"
+msgstr "Roboterparameter"
+
+#: myapp/templates/settings2.html:23
+msgid "Robot speed"
+msgstr "Robotergeschwindigkeit"
+
+#: myapp/templates/settings2.html:33
+msgid "Waiting time"
+msgstr "Wartezeit"
+
+#: myapp/templates/settings2.html:38
+msgid "sec."
+msgstr "Sek."
+
+#: myapp/templates/settings2.html:43
+msgid "Lasermode"
+msgstr "Lasermodus"
+
+#: myapp/templates/settings2.html:47
+msgid "Off"
+msgstr "Aus"
+
+#: myapp/templates/settings2.html:48
+msgid "Constant"
+msgstr "Konstant"
+
+#: myapp/templates/settings2.html:49
+msgid "Flickering"
+msgstr "Flackernd"
+
+#: myapp/templates/settings2.html:54
+msgid "Automatic determination of glass volume"
+msgstr "Automatische Bestimmung des Glasvolumens"
+
+#: myapp/templates/settings2.html:65
+msgid "Checking for glass availability"
+msgstr "Überprüfung der Glasverfügbarkeit"
+
+#: myapp/templates/settings2.html:78
+msgid "QR code for application address"
+msgstr "QR-Code für die Anwendungsadresse"
+
+msgid "IP-address"
+msgstr "IP-Adresse"
+
+#: myapp/templates/settings2.html:85
+msgid "Show More"
+msgstr "Mehr anzeigen"
+
+#: myapp/templates/settings2.html:87
+msgid "Apply"
+msgstr "Anwenden"
+
+#: myapp/templates/settings2.html:91
+msgid "Default"
+msgstr "Standard"
+
+#: myapp/templates/settings2.html:98
+msgid "Do you want to apply the settings?"
+msgstr "Möchten Sie die Einstellungen anwenden?"
+
+#: myapp/templates/settings2.html:107
+msgid "Do you want to make default settings?"
+msgstr "Möchten Sie die Standardeinstellungen verwenden?"
+
+
+msgid "Welcome to the InnoFiller app"
+msgstr "Willkommen bei der InnoFiller app"
+
+msgid "We are delighted to welcome you to our app for managing your new dispenser! Our company aims to provide you with the most innovative and convenient solutions. We wish you a pleasant experience!"
+msgstr "Wir freuen uns, Sie in unserer App zur Verwaltung Ihres neuen Spenders begrüßen zu dürfen! Unser Unternehmen strebt danach, Ihnen die innovativsten und bequemsten Lösungen zu bieten. Wir wünschen Ihnen eine angenehme Nutzung!"
+
+msgid "Sincerely, "
+msgstr "Mit freundlichen Grüßen, "
+
+msgid "the"
+msgstr "das"
+
+msgid " Innotech team"
+msgstr "Innotech Team"

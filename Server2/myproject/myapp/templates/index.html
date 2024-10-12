@@ -1,0 +1,75 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "InnoFiller" %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="{% url 'innotech' %}">
+                <img src="{% static 'images/logo.png' %}" alt="{% trans "Logo" %}">
+            </a>
+        </header>
+        <main class="main">
+            <h2>{% trans "Filler Parameters" %}</h2>
+            <form id="drinkForm" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="drink1">{% trans "Drink 1" %}:</label>
+                    <input type="number" id="drink1" name="drink1" required value="{{ filler.drink1 }}">
+                    <span>{% trans "ml" %}</span>
+                </div>
+                <div class="input-group">
+                    <label for="drink2">{% trans "Drink 2" %}:</label>
+                    <input type="number" id="drink2" name="drink2" required value="{{ filler.drink2 }}">
+                    <span>{% trans "ml" %}</span>
+                </div>
+                <div class="input-group">
+                    <label class="switch">
+                        <input type="checkbox" id="statusSwitch" name="status" {% if filler.status %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span id="statusText"></span>
+                </div>
+                <div class="status-container">
+                    <span class="status_circle" id="status_circle"></span>
+                    <span class="status_info" id="status_info">Unknow</span>
+                </div>
+                <div class="status-container2">
+                    <span class="status_info2" id="status_info2">Unknow</span>
+                </div>
+            </form>
+        </main>
+        <div class="button-group">
+            <a href="{% url 'settings1' %}"><button class="icon-button"><img src="{% static 'images/icons8-geography-100.png' %}" alt="{% trans 'Language Settings' %}"></button></a>
+            <a href="{% url 'settings2' %}"><button class="icon-button"><img src="{% static 'images/icons8-automation-100.png' %}" alt="{% trans 'System Settings' %}"></button></a>
+            <a href="{% url 'control' %}"><button class="icon-button"><img src="{% static 'images/icons8-robotic-arm-100.png' %}" alt="{% trans 'Robot Settings' %}"></button></a>
+        </div>
+    </div>
+    <div id="translations" style="display: none;">
+        <span id="trans-on">{% trans 'ON' %}</span>
+        <span id="trans-off">{% trans 'OFF' %}</span>
+        
+        <span id="trans-info-0">{% trans 'System not calibrated' %}</span>
+        <span id="trans-info-1">{% trans 'System ready' %}</span>
+        <span id="trans-info-2">{% trans 'Emergency button pressed' %}</span>
+
+        <span id="trans-info2-0">{% trans 'Switch to "On" mode to turn on the system' %}</span>
+        <span id="trans-info2-1">{% trans 'System ready' %}</span>
+        <span id="trans-info2-2">{% trans 'Scanning in progress, place the glass in the work area' %}</span>
+        <span id="trans-info2-3">{% trans 'Glass found' %}</span>
+        <span id="trans-info2-4">{% trans 'Filling process in progress' %}</span>
+        <span id="trans-info2-5">{% trans 'The drink is ready' %}</span>
+        <span id="trans-info2-6">{% trans 'Switch to "On" and place the glass in the work area' %}</span>
+
+    </div>
+    <script src="{% static 'js/DrinkForm.js' %}"></script>
+</body>
+</html>

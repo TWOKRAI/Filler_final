@@ -1,0 +1,41 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Innotech filler - Language Settings" %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="{% url 'innotech' %}">
+                <img src="{% static 'images/logo.png' %}" alt="{% trans "Logo" %}">
+            </a>
+        </header>
+        <main class="main">
+            <h2>{% trans "Language Settings" %}</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="language-buttons">
+                    <button type="submit" name="language" value="en">English </button>
+                </div>
+                <div class="language-buttons">
+                    <button type="submit" name="language" value="ru">Русский</button>
+                </div>
+                <div class="language-buttons">
+                    <button type="submit" name="language" value="de">Deutsch</button>
+                </div>
+                <div class="settings-buttons2">
+                    <a href="{% url 'index' %}"><button type="button" id="backButton">{% trans "Back" %}</button></a>
+                </div>
+            </form>
+            <div class="divider"></div>
+        </main>
+    </div>
+    <script src="{% static 'js/scripts2.js' %}"></script>
+</body>
+</html>

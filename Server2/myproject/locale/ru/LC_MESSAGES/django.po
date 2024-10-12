@@ -1,0 +1,225 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-06 10:53+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO+ZONE\n"
+"Last-Translator: FULL NAME EMAIL@ADDRESS\n"
+"Language-Team: LANGUAGE LL@li.org\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+#: myapp/templates/control.html:18
+msgid "Robot control"
+msgstr "Управление роботом"
+
+#: myapp/templates/control.html:23
+msgid "Robot calibration"
+msgstr "Калибровка робота"
+
+#: myapp/templates/control.html:26
+msgid "Pull out the panel"
+msgstr "Выдвинуть панель"
+
+#: myapp/templates/control.html:29
+msgid "Motor power supply"
+msgstr "Питание двигателей"
+
+#: myapp/templates/control.html:35 myapp/templates/settings1.html:27
+#: myapp/templates/settings2.html:88
+msgid "Back"
+msgstr "Назад"
+
+#: myapp/templates/control.html:43 myapp/templates/settings2.html:99
+#: myapp/templates/settings2.html:108
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: myapp/templates/control.html:44 myapp/templates/settings2.html:100
+#: myapp/templates/settings2.html:109
+msgid "Cancel"
+msgstr "Отменить"
+
+#: myapp/templates/control.html:51
+msgid "Do you want to start calibrating the robot?"
+msgstr "Вы хотите начать калибровку робота?"
+
+#: myapp/templates/control.html:52
+msgid "Do you want to pull out the panel?"
+msgstr "Вы хотите выдвинуть панель?"
+
+#: myapp/templates/control.html:53
+msgid "Do you want to turn on/off the power to the motors?"
+msgstr "Вы хотите включить/выключить питание двигателей?"
+
+#: myapp/templates/index.html:6
+msgid "Innotech filler"
+msgstr "Innotech наливатор"
+
+#: myapp/templates/index.html:13 myapp/templates/settings1.html:15
+msgid "Logo"
+msgstr "Логотип"
+
+#: myapp/templates/index.html:16
+msgid "Filler Parameters"
+msgstr "Параметры наливатора"
+
+#: myapp/templates/index.html:20
+msgid "Drink 1"
+msgstr "Напиток 1"
+
+#: myapp/templates/index.html:22 myapp/templates/index.html:27
+msgid "ml"
+msgstr "мл"
+
+#: myapp/templates/index.html:25
+msgid "Drink 2"
+msgstr "Напиток 2"
+
+#: myapp/templates/index.html:45 myapp/templates/settings1.html:18
+msgid "Language Settings"
+msgstr "Настройки языка"
+
+#: myapp/templates/index.html:46
+msgid "System Settings"
+msgstr "Настройки системы"
+
+#: myapp/templates/index.html:47
+msgid "Robot Settings"
+msgstr "Настройки робота"
+
+#: myapp/templates/index.html:51
+msgid "ON"
+msgstr "ВКЛ"
+
+#: myapp/templates/index.html:52
+msgid "OFF"
+msgstr "ВЫКЛ"
+
+#: myapp/templates/index.html:54
+msgid "System ready"
+msgstr "Система готова"
+
+#: myapp/templates/index.html:55
+msgid "System not calibrated"
+msgstr "Система не откалибрована"
+
+#: myapp/templates/index.html:56
+msgid "Info 2"
+msgstr "Инфо 2"
+
+#: myapp/templates/index.html:57
+msgid "Info 3"
+msgstr "Инфо 3"
+
+#: myapp/templates/index.html:58
+msgid "Info 4"
+msgstr "Инфо 4"
+
+#: myapp/templates/settings1.html:8
+msgid "Innotech filler - Language Settings"
+msgstr "Innotech наливатор - Настройки языка"
+
+#: myapp/templates/settings1.html:22
+msgid "English"
+msgstr "Английский"
+
+#: myapp/templates/settings1.html:23
+msgid "Русский"
+msgstr "Русский"
+
+#: myapp/templates/settings1.html:24
+msgid "Deutsch"
+msgstr "Немецкий"
+
+#: myapp/templates/settings2.html:18
+msgid "Robot parameters"
+msgstr "Параметры робота"
+
+#: myapp/templates/settings2.html:23
+msgid "Robot speed"
+msgstr "Скорость робота"
+
+#: myapp/templates/settings2.html:33
+msgid "Waiting time"
+msgstr "Время ожидания"
+
+#: myapp/templates/settings2.html:38
+msgid "sec."
+msgstr "сек."
+
+#: myapp/templates/settings2.html:43
+msgid "Lasermode"
+msgstr "Лазерный режим"
+
+#: myapp/templates/settings2.html:47
+msgid "Off"
+msgstr "Выкл"
+
+#: myapp/templates/settings2.html:48
+msgid "Constant"
+msgstr "Постоянный"
+
+#: myapp/templates/settings2.html:49
+msgid "Flickering"
+msgstr "Мерцающий"
+
+#: myapp/templates/settings2.html:54
+msgid "Automatic determination of glass volume"
+msgstr "Автоматическое определение объема стакана"
+
+#: myapp/templates/settings2.html:65
+msgid "Checking for glass availability"
+msgstr "Проверка наличия стакана"
+
+#: myapp/templates/settings2.html:78
+msgid "QR code for application address"
+msgstr "QR-код для адреса приложения"
+
+msgid "IP-address"
+msgstr "IP-адрес"
+
+#: myapp/templates/settings2.html:85
+msgid "Show More"
+msgstr "Показать больше"
+
+#: myapp/templates/settings2.html:87
+msgid "Apply"
+msgstr "Применить"
+
+#: myapp/templates/settings2.html:91
+msgid "Default"
+msgstr "По умолчанию"
+
+#: myapp/templates/settings2.html:98
+msgid "Do you want to apply the settings?"
+msgstr "Вы хотите применить настройки?"
+
+#: myapp/templates/settings2.html:107
+msgid "Do you want to make default settings?"
+msgstr "Вы хотите сделать настройки по умолчанию?"
+
+
+msgid "Welcome to the InnoFiller app"
+msgstr "Добро пожаловать в приложение InnoFiller"
+
+msgid "We are delighted to welcome you to our app for managing your new dispenser! Our company aims to provide you with the most innovative and convenient solutions. We wish you a pleasant experience!"
+msgstr "Мы рады приветствовать вас в нашем приложении для управления вашим новым наливатором! Наша компания стремится предоставить вам самые инновационные и удобные решения. Желаем вам приятного использования!"
+
+
+msgid "Sincerely, "
+msgstr "С уважением, "
+
+msgid "the"
+msgstr " "
+
+msgid " Innotech team"
+msgstr " команда Innotech"

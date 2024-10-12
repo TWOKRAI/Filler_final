@@ -1,0 +1,61 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innotech filler</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="{% url 'innotech' %}">
+                <img src="{% static 'images/logo.png' %}" alt="{% trans "Logo" %}">
+            </a>
+        </header>
+        <main class="main">
+            <h2>{% trans "Robot control" %}</h2>
+            <form id="robotForm" method="POST" data-index-url="{% url 'index' %}">
+                {% csrf_token %}
+
+                <div class="control-buttons">
+                    <button type="button" id="calibrationButton" data-url="{% url 'set_control' %}">{% trans "Robot calibration" %}</button>
+                </div>
+                <div class="control-buttons">
+                    <button type="button" id="panelButton" data-url="{% url 'set_control' %}">{% trans "Pull out the panel" %}</button>
+                </div>
+                <div class="control-buttons">
+                    <button type="button" id="motorButton" data-url="{% url 'set_control' %}">{% trans "Motor power supply" %}</button>
+                </div>
+            </form>
+            <div class="settings-buttons2">
+                <a href="{% url 'index' %}"><button type="button" id="backButton">{% trans "Back" %}</button></a>
+            </div>
+        </main>
+        <div class="divider"></div>
+    </div>
+
+    <!-- Всплывающее окно -->
+    <div id="confirmDialog" class="confirm-dialog">
+        <div class="confirm-dialog-content">
+            <p id="confirmMessage"></p>
+            <button id="confirmButton">{% trans "Confirm" %}</button>
+            <button id="cancelButton">{% trans "Cancel" %}</button>
+        </div>
+    </div>
+
+    <!-- Передача переведенных строк в JavaScript -->
+    <script>
+        var translations = {
+            calibrationMessage: "{% trans 'Do you want to start calibrating the robot?' %}",
+            panelMessage: "{% trans 'Do you want to pull out the panel?' %}",
+            motorMessage: "{% trans 'Do you want to turn on/off the power to the motors?' %}"
+        };
+    </script>
+
+    <script src="{% static 'js/ControlForm.js' %}"></script>
+</body>
+</html>

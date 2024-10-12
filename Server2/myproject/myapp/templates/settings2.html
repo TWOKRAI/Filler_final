@@ -1,0 +1,124 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innotech filler</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container2">
+        <header class="header">
+            <a href="{% url 'innotech' %}">
+                <img src="{% static 'images/logo.png' %}" alt="{% trans "Logo" %}">
+            </a>
+        </header>
+        <main class="main">
+            <h2>{% trans "Robot parameters" %}</h2>
+            <form id="robotForm" method="POST" data-index-url="{% url 'index' %}">
+                {% csrf_token %}
+            
+                <div class="input-group2">
+                    <label for="speed">{% trans "Robot speed" %}:</label>
+                </div>
+                <div class="center-group">
+                    <div class="input-group2">
+                        <input class="input1" type="number" id="speed" name="speed" required value="{{ robot.speed }}">
+                        <span>%</span>
+                    </div>
+                </div>
+            
+                <div class="input-group2">
+                    <label for="waiting">{% trans "Waiting time" %}:</label>
+                </div>
+                <div class="center-group">
+                    <div class="input-group2">
+                        <input class="input2" type="number" id="waiting" name="waiting" required value="{{ robot.time_wait }}">
+                        <span>{% trans "sec." %}</span>
+                    </div>
+                </div>
+            
+                <div class="input-group2">
+                    <label for="lasermode">{% trans "Lasermode" %}:</label>
+                </div>
+                <div class="input-group2">
+                    <select class="input-select" id="lasermode" name="lasermode" required>
+                        <option value="0" {% if robot.laser_mode == 0 %}selected{% endif %}>{% trans "Off" %}</option>
+                        <option value="1" {% if robot.laser_mode == 1 %}selected{% endif %}>{% trans "Constant" %}</option>
+                        <option value="2" {% if robot.laser_mode == 2 %}selected{% endif %}>{% trans "Flickering" %}</option>
+                    </select>
+                </div>
+            
+                <div class="input-group2">
+                    <label for="autovalue">{% trans "Automatic determination of glass volume" %}:</label>
+                </div>
+                <div class="input-group">
+                    <label class="switch">
+                        <input type="checkbox" id="autovalueSwitch" name="autovalue" {% if robot.autovalue %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span id="autovalueText"></span>
+                </div>
+            
+                <div class="input-group2">
+                    <label for="presence_cup">{% trans "Checking for glass availability" %}:</label>
+                </div>
+
+                <div class="input-group">
+                    <label class="switch">
+                        <input type="checkbox" id="presenceCupSwitch" name="presence_cup" {% if robot.presence_cup %}checked{% endif %}>
+                        <span class="slider"></span>
+                    </label>
+                    <span id="presenceCupText"></span>
+                </div>
+            </form>
+
+            <div class="input-group2">
+                <label for="presence_cup">{% trans "QR code for application address" %}:</label>
+            </div>
+            <div class="input-group2">
+                <img src="{% static 'images/django_qr_code.png' %}" alt=Logo>
+            </div>
+            <div class="input-group2">
+                <label for="presence_cup">{% trans "IP-address" %}: 192.168.3.24:8000</label>
+            </div>
+        </main>
+        <button id="toggleButton">{% trans "Show More" %}</button>
+
+        <div class="settings-buttons2">
+            <div class="apply-default-buttons">
+                <button type="button" id="defaultButton">{% trans "Default" %}</button>
+                <button type="button" id="applyButton">{% trans "Apply" %}</button>
+            </div>
+            <a href="{% url 'index' %}"><button type="button" id="backButton">{% trans "Back" %}</button></a>
+        </div>
+        <div class="divider"></div>
+    </div>
+
+    <!-- Всплывающее окно -->
+    <div id="confirmDialog" class="confirm-dialog">
+        <div class="confirm-dialog-content">
+            <p>{% trans "Do you want to apply the settings?" %}</p>
+            <button id="confirmButton">{% trans "Confirm" %}</button>
+            <button id="cancelButton">{% trans "Cancel" %}</button>
+        </div>
+    </div>
+
+    <!-- Всплывающее окно для сброса до дефолтных значений -->
+    <div id="confirmDialog-default" class="confirm-dialog">
+        <div class="confirm-dialog-content">
+            <p>{% trans "Do you want to make default settings?" %}</p>
+            <button id="confirmButton-default">{% trans "Confirm" %}</button>
+            <button id="cancelButton-default">{% trans "Cancel" %}</button>
+        </div>
+    </div>
+
+    <script>
+        const resetUrl = "{% url 'reset_to_default' %}";
+    </script>
+    <script src="{% static 'js/RobotForm.js' %}"></script>
+</body>
+</html>
