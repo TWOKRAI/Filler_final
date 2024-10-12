@@ -56,11 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 statusCircle.style.backgroundColor = color_green; 
                 break;
             case 1:
-            case 2:
-            case 3:
                 statusInfo.style.color = color_orange;
                 statusCircle.style.backgroundColor = color_orange;
                 break;
+            case 2:
+            case 3:
             case 4:
                 statusInfo.style.color = 'red';
                 statusCircle.style.backgroundColor = 'red';
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateStatusInfo2(info) {
         const statusInfo2 = document.getElementById('status_info2');
 
-        statusInfo2.textContent = translations.info[info]
+        statusInfo2.textContent = translations.info2[info]
 
         switch (info) {
             case 0:

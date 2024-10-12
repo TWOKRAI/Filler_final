@@ -91,7 +91,7 @@ class Neuron:
 		self.objects = []
 		self.objects_filter = []
 
-		print('ЗАБЫЛ')
+		#print('ЗАБЫЛ')
 	
 
 	def neuron_vision(self):
@@ -403,7 +403,7 @@ class Neuron:
 
 			dx = w / 19.2 * (1 + abs(15.7 - y) * 0.04)
 
-			print("dx", dx)
+			#print("dx", dx)
 
 			z3 = z2
 			dz = z3

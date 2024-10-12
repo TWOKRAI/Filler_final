@@ -75,10 +75,17 @@ class Error_control(QMainWindow):
 
         self.update()
 
+        app.database.update_data('myapp_filler', 'status', False)
+        app.database.update_data('myapp_filler', 'info', 2)
+        app.database.update_data('myapp_filler', 'info2', 2)
+
+
 
     def close(self):
         # if not input_request.button_error:
         self.hide()
+        app.database.update_data('myapp_filler', 'info', 0)
+        app.database.update_data('myapp_filler', 'info2', 1)
 
 
     def language(self, lang):

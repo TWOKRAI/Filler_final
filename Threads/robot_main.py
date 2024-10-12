@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, QObject
-import numpy as np
+
 
 from Filler_robot.VisionTech.camera import Camera
 from Filler_robot.NeuroModules.neuron import Neuron
@@ -79,15 +79,13 @@ class Robot_filler(QThread):
     
 
     def run(self) -> None:
-        print('START THREAD')
-
         self.running = True
         self.robot.pumping_find = False
         self.robot.find = False
 
         i = 0
 
-        print('self.running', self.running)
+        print('START THREAD', 'self.running', self.running)
 
         #self.laser.on_off(0)
 
@@ -220,12 +218,12 @@ class Robot_filler(QThread):
                     self.robot.calibration()
 
                 self.laser.running()
-                self.laser.on_off(1)
+                self.laser.on_off(0)
                 
                 self.camera.running()
                 
                 if not self.filler: break
-                self.robot.enable_motors(True)
+                # self.robot.enable_motors(True)
                 self.neuron.neuron_vision()
 
                 self.time = 0
@@ -233,16 +231,17 @@ class Robot_filler(QThread):
             self.interface.running()
             
             if not self.filler: break
+            self.laser.on_off(1)
             self.robot.running()
         
         self.start_state.emit(0)
-
 
 
     def filler_stop(self):
         self.filler = False
 
         self.robot.start = False
+        self.robot.calibration_ready = False
 
 
     def calibration_run(self):

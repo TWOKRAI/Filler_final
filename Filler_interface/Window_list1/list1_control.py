@@ -82,9 +82,6 @@ class List_control(QMainWindow):
         #self.language(app.lang)
         super().show()
         
-        app.window_focus = self.window_name
-        app.close_windows()
-
 
     def set_icons(self):
         file_path = os.path.join('/home/innotech/Project/Filler/Filler_interface', 'Style_windows', 'icons_black', 'icons8-закрыть-окно-96')
@@ -125,5 +122,5 @@ class List_control(QMainWindow):
 
     
     def statistics(self):
-        app.window_statistic.show()
+        app.window_qrcode.show()
         self.hide()

@@ -176,8 +176,12 @@ class Main_filler_control(QMainWindow):
         self.setFocus()
         self.all_enable_off()
         
-        app.window_prepare.hide()
-        app.window_prepare.show()
+        # app.window_prepare.hide()
+        # app.window_prepare.show()
+
+        app.window_filler.hide()
+        app.window_filler.show()
+
         #self.setFocus()
         #self.hide()
         

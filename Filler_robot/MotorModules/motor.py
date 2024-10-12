@@ -65,6 +65,25 @@ class Motor:
 			self.pin_enable.set_value(1)
 		else:
 			self.pin_enable.set_value(0)
+
+
+	# def enable_on(self, on: bool):
+	# 	if on:
+	# 		self.enable_step(0.0001, 0.00005)
+	# 		self.pin_enable.set_value(1)
+	# 	else:
+	# 		self.enable_step(0.00005, 0.0001)
+	# 		self.pin_enable.set_value(0)
+
+	
+	# def enable_step(self, sleep_on, sleep_off):
+	# 	for i in range(100):
+	# 		self.pin_enable.set_value(1)
+	# 		time.sleep(sleep_on)
+
+	# 		self.pin_enable.set_value(0)
+	# 		time.sleep(sleep_off)
+
     
     
 	def init_acceleration(self, distance: int, mode: bool = True, print_log = False) -> float:
@@ -279,8 +298,8 @@ class Motor:
 		
 		steps = abs(steps)
 
-		acceleration_steps = acc_step
-		deceleration_steps = dec_step
+		acceleration_steps = acc_step * 3
+		deceleration_steps = dec_step * 3
 
 		constant_speed_steps = steps - acceleration_steps - deceleration_steps
 		
@@ -298,7 +317,7 @@ class Motor:
 			self.pin_step.value = 0.5
 			self.step_info_1 = i
 
-			await asyncio.sleep(1 / current_speed)
+			await asyncio.sleep(1 / current_speed / 20)
 
 		self.pin_step.frequency = speed
 		
@@ -309,7 +328,7 @@ class Motor:
 			self.pin_step.value = 0.5
 			self.step_info_2 = i
 
-			await asyncio.sleep(1 / speed)
+			await asyncio.sleep(1 / speed / 20)
 			
 		for i in range(deceleration_steps):
 			if self.stop == True:
@@ -320,7 +339,7 @@ class Motor:
 			self.pin_step.value = 0.5
 			self.step_info_3 = i
 
-			await asyncio.sleep(1 / current_speed)		
+			await asyncio.sleep(1 / current_speed / 100)		
 
 
 	def freq_new(self, steps, speed, acc_step, dec_step, start_speed, end_speed):

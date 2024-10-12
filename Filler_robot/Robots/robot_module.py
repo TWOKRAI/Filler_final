@@ -1,5 +1,6 @@
 import asyncio
 import math
+import time
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, QObject
 
 from Filler_robot.MotorModules.motor import Motor
@@ -501,7 +502,7 @@ class Robot_module(QObject):
 
 
 	def move(self, distance_x, distance_y, distance_z, detect = False):
-		self.connect_0.laser.on_off(0)
+		#self.connect_0.laser.on_off(0)
 		
 		# speed = (10 - app.window_robot.speed_robot) / 5000
 		# speed = round(speed, 6)
@@ -614,7 +615,6 @@ class Robot_module(QObject):
 
 		if not self.calibration_ready and self.button_stop == False:
 			self.calibration()
-
 		
 		list_objects = self.connect_0.neuron.objects_filter
 		list_coord = self.connect_0.neuron.list_coord
@@ -629,23 +629,20 @@ class Robot_module(QObject):
 
 		completed = False
 
-		for coord in list_coord:
+		for coord in list_coord:	
 			if self.start == False and self.pumping_find == False:
 				break
 
 			self.enable_motors(True)
-			
-			x, y, z, v = coord
+			time.sleep(0.5)
 
-			# if z > 12:
-			# 	z = z + 3
+			x, y, z, v = coord
 
 			z = z + 2
 
 			if z > 13: 
 				z = z + 2
 
-			
 			if y > 14:
 				y = y * (1 - abs(14 - y) /140)
 				x = x * (1 - abs(14 - y) /140)
@@ -654,14 +651,9 @@ class Robot_module(QObject):
 				y = y * 1.05
 				x = x * 0.9
 
-			# x = x * 0.9
-			# y = y * 0.9
-
 			limit = self.check_limit(x, y, z)
 
 			if list_objects[i][0] == False and limit == True: 
-				# z = z + 2
-				
 				self.enable_motors(True)
 
 				if self.joker >= 2:
@@ -691,6 +683,7 @@ class Robot_module(QObject):
 						
 						self.connect_0.pump_station.cap_value = v
 						self.connect_0.pump_station.filler()
+
 						completed = True
 						list_objects[i][0] = True
 						self.connect_0.neuron.memory_objects = list_objects
@@ -708,7 +701,7 @@ class Robot_module(QObject):
 			self.go_home()
 
 		if completed and not self.pumping_find and self.start:
-			self.connect_0.laser.on_off(0)
+			#self.connect_0.laser.on_off(0)
 			time_wait = app.window_robot.time_robot * 1000
 			QThread.msleep(time_wait)
 		
@@ -768,7 +761,7 @@ class Robot_module(QObject):
 
 
 	def calibration(self):
-		self.connect_0.laser.on_off(0)
+		#self.connect_0.laser.on_off(0)
 
 		if self.button_stop == False:
 			self.axis_x.motor.enable_on(True)

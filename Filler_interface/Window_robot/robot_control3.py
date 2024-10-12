@@ -186,7 +186,7 @@ class Robot_control(Control):
 
     def get_parametrs(self): 
         self.data_robot = app.database.read_data('myapp_robot')
-        #print('self.data_robot', self.data_robot)
+        #print('self.data_robot2', self.data_robot)
 
         self.speed_robot = self.data_robot[0][1]
         self.time_robot = self.data_robot[0][2]

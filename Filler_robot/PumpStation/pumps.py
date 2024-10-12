@@ -36,13 +36,10 @@ class Pump_station(QObject):
 
         self.turn1 = 0
         self.turn2 = 0
-        
-        self.mode_game = False
-        self.level = 1
-        self.turn_min = 0
-        self.turn_max = 1000
 
         self.filler_run = False
+
+        self.pumping_ready = False
 
         self.autovalue = True
         self.cap_value = 0
@@ -103,13 +100,18 @@ class Pump_station(QObject):
                 ml_1 = int(ml_1)
                 ml_2 = int(ml_2)
             
-        if self.rullete_run:
-            ml_1, ml_2 = self.russian_rullete(ml_1, ml_2)
+        # if self.rullete_run:
+        #     ml_1, ml_2 = self.russian_rullete(ml_1, ml_2)
 
-        if self.rullete_2_run:
-            ml_1, ml_2 = self.russian_rullete(ml_1, ml_2)
+        # if self.rullete_2_run:
+        #     ml_1, ml_2 = self.russian_rullete(ml_1, ml_2)
 
-        asyncio.run(self._all_pour_async(ml_1, ml_2))
+        if self.pumping_ready == True:
+            asyncio.run(self._all_pour_async(ml_1, ml_2))
+        else:
+            self.bottles_value.emit(30, 30)
+            asyncio.run(self._all_pour_async(30, 30))
+            self.pumping_ready = True
 
         self.enable_motors(False)
 
@@ -134,12 +136,6 @@ class Pump_station(QObject):
             ml_2 = all_value * (1 - ratio_1) * 0.95
         else:
             ml_2 = 0
-
-        # if ml_1 < all_value * 0.2:
-        #     ml_1 = ml_1 * 2
-
-        # if ml_2 < all_value * 0.2:
-        #     ml_2 = ml_2 * 2
 
         #print('RUSSIAN RULLETE', ml_1, ml_2)
 
@@ -172,6 +168,7 @@ class Pump_station(QObject):
     
     def stop_pumps(self):
         self.stop2 = True
+        self.stop_monitor = True
 
         self.pump_1.motor.stop = True
         self.pump_2.motor.stop = True

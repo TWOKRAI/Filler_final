@@ -10,14 +10,14 @@ class ServerManager:
 
     def run_server(self):
         self.server_module_process = subprocess.Popen(
-            ['/bin/bash', '-c', 'source /home/innotech/Project/Filler/Server2/myenv/bin/activate && python /home/innotech/Project/Filler/Server2/myproject/manage.py runserver 0.0.0.0:8000'],
+            ['/bin/bash', '-c', 'source /home/innotech/Project/Filler_final/Server2/myenv/bin/activate && python /home/innotech/Project/Filler_final/Server2/myproject/manage.py runserver 0.0.0.0:8000'],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL
         )
 
 
     def stop_server(self):
-        result1 = subprocess.run(['pkill', '-f', 'python /home/innotech/Project/Filler/Server2/myproject/manage.py runserver 0.0.0.0:8000'])
+        result1 = subprocess.run(['pkill', '-f', 'python /home/innotech/Project/Filler_final/Server2/myproject/manage.py runserver 0.0.0.0:8000'])
         result2 = subprocess.run(['pkill', '-f', 'manage.py runserver 0.0.0.0:8000'])
 
         if result1.returncode != 0 or result2.returncode != 0:

@@ -17,8 +17,8 @@ def index(request):
         if not filler:
             filler = Filler()
 
-        filler.info = 0
-        filler.info2 = 1
+        # filler.info = 0
+        # filler.info2 = 1
 
         # Получаем данные из POST-запроса
         drink1 = request.POST.get('drink1', 0)

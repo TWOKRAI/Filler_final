@@ -48,6 +48,9 @@ class Filler_control(Control):
 
         self.button_view.clicked.connect(self.view)
 
+        self.button_view.pressed.connect(self.button_view_pressed)
+        self.button_view.released.connect(self.button_view_released)
+
 
         self.button_start.setMinimumSize(button_size)
         
@@ -120,9 +123,6 @@ class Filler_control(Control):
         self.timer_button.setSingleShot(False)
         self.timer_button.setInterval(1000)
         self.timer_button.timeout.connect(self.button_recolor)
-
-        self.button_view.pressed.connect(self.button_view_pressed)
-        self.button_view.released.connect(self.button_view_released)
 
         file_path = os.path.join('Filler_interface', 'Window_settings1', 'Data')
         self.memory = Memory(db_path = file_path, db_file = 'memory_db')
@@ -393,6 +393,9 @@ class Filler_control(Control):
 
         if value2 <= self.prev_value2:
             self.prev_value2 = value2
+        
+        value1 = int(value1)
+        value2 = int(value2)
 
         #print('update', self.prev_value1, self.prev_value2)
 
@@ -712,6 +715,8 @@ class Filler_control(Control):
         if self.play == True:
             self.start_filler.emit()
             app.database.update_data('myapp_filler', 'status', True)
+
+            self.button_start_update(1)
         else:
             self.stop_filler.emit()
             app.database.update_data('myapp_filler', 'status', False)
@@ -720,4 +725,7 @@ class Filler_control(Control):
             # app.threads.robot_filler.robot.stop_motors()
             # app.threads.robot_filler.all_stop()
 
-        # self.button_start_update()            
+            self.button_start_update(0)
+
+
+               

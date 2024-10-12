@@ -23,7 +23,7 @@ class Pump(QObject):
         self.ml = 30
         self.amount = 1
         self.step_amount = 0.003
-        self.speed = 10
+        self.speed = 9
         self.speed_k = 100
 
         self.dir = 1

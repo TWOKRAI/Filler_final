@@ -289,6 +289,9 @@ class App(QApplication):
         from Filler_interface.Window_filler.filler_control2 import Filler_control
         self.window_filler = Filler_control()
 
+        from Filler_interface.Window_qrcode.qrcode_conrol import QRCodeControl
+        self.window_qrcode = QRCodeControl()
+
         self.ready = True
 
     
