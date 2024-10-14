@@ -60,11 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 statusCircle.style.backgroundColor = color_orange;
                 break;
             case 2:
-            case 3:
-            case 4:
                 statusInfo.style.color = 'red';
                 statusCircle.style.backgroundColor = 'red';
                 break;
+
             default:
                 statusInfo.style.color = 'black';
                 statusCircle.style.backgroundColor = 'black';
@@ -79,14 +78,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         switch (info) {
             case 0:
-                statusInfo2.style.color = color_green;
-                break;
             case 1:
             case 2:
             case 3:
+            case 4:
+                statusInfo2.style.color = color_green;
+                break;
+            case 5:    
                 statusInfo2.style.color = color_orange;
                 break;
-            case 4:
+            case 6:    
                 statusInfo2.style.color = 'red';
                 break;
             default:

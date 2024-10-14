@@ -28,11 +28,11 @@ class Motor_monitor(QThread):
         self.acc_start = 20
         self.acc_end = 20
         
-        self.motor_speed = 2500
+        self.motor_speed = 3000
         
         self.motor.limit_min = -15000
         self.motor.limit_max = 15000
-        self.distance = 9000
+        self.distance = 6000
 
         self.direction = True
 

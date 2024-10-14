@@ -60,20 +60,21 @@ class Confirm_control(QMainWindow):
         self.pushButton_cancel.setFont(font_2)
 
         self.pushButton_cancel.released.connect(self.cancel)
+        self.pushButton_cancel.hide()
 
 
         self.lang = 0
 
         self.text = [
-            'Вы хотите сделать сброс параметров?', 
-            'Do you want to reset the parameters?',
-            'Möchten Sie Ihre Einstellungen zurücksetzen?', 
+            'Для того чтобы выполнить прокачку системы, поставьте стакан в рабочую зону и нажмите "ПРОДОЛЖИТЬ".', 
+            'To perform the system calibration, place the glass in the work area and press "CONTINUE".',
+            'Um das System zu kalibrieren, stellen Sie das Glas in den Arbeitsbereich und drücken Sie "WEITER".', 
         ]
 
         self.text_button_ok = [
-            'ПОДТВЕРДИТЬ', 
-            'CONFIRM',
-            'BESTÄTIGEN', 
+            'ПРОДОЛЖИТЬ', 
+            'CONTINUE',
+            'WEITER', 
         ]
 
         self.text_button_cancel = [
@@ -83,22 +84,18 @@ class Confirm_control(QMainWindow):
         ]
 
         self.font_size = [
-            [33, 21],
-            [33, 21],
-            [33, 21],
-            [33, 21],
+            [29, 21],
+            [29, 21],
+            [29, 21],
+            [29, 21],
         ]
 
 
-    def show(self, func, func_cancel = None):
+    def show(self, func):
         if app.on_fullscreen: self.fullscreen()
-
-        # app.window_focus = self.window_name
-        # print(app.window_focus)
 
         self.update_text()
         self.func = func
-        self.func_cancel = func_cancel
 
         super().show()
         
@@ -119,19 +116,17 @@ class Confirm_control(QMainWindow):
         size = self.font_size[self.lang][0]
         self.font_text.setPointSize(size)
         self.label_2.setFont(self.font_text)
-        self.label_2.setText(self.text[self.lang])
+        self.label_2.setText(self.text[app.lang_num])
 
         size = self.font_size[self.lang][1]
         self.font_text.setPointSize(size)
         self.pushButton_ok.setFont(self.font_text)
-        self.pushButton_ok.setText(self.text_button_ok[self.lang])
+        self.pushButton_ok.setText(self.text_button_ok[app.lang_num])
 
         size = self.font_size[self.lang][1]
         self.font_text.setPointSize(size)
         self.pushButton_cancel.setFont(self.font_text)
         self.pushButton_cancel.setText(self.text_button_cancel[self.lang])
-
-        print('UPDATE POP')
 
 
     def ok(self):

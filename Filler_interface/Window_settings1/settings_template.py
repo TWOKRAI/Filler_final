@@ -48,8 +48,13 @@ class Control(QMainWindow):
         
         self.update()
         self.enable_control()
-        super().show()
-
+        
+        if not self.isVisible():
+            super().show()
+        else:
+            self.hide()
+            super().show()
+        
         app.window_focus = self.window_name
         # print(app.window_focus)
         #app.close_windows()
@@ -79,6 +84,9 @@ class Control(QMainWindow):
 
     @enable_marker_decorator('enable_marker')
     def button_menu_released(self):
+        self.button_menu.clearFocus()
+        self.setFocus()
+        
         app.window_main_filler.show()
         self.hide()
     
@@ -194,6 +202,8 @@ class Control(QMainWindow):
 
     def left_released(self):
         #self.timer_left_pressed.stop()
+        self.button_left.clearFocus()
+        self.setFocus()
         pass
 
     
@@ -212,6 +222,8 @@ class Control(QMainWindow):
 
     def right_released(self):
         #self.timer_right_pressed.stop()
+        self.button_right.clearFocus()
+        self.setFocus()
         pass
 
     
@@ -234,6 +246,8 @@ class Control(QMainWindow):
 
 
     def minus_released(self):
+        self.button_menu.clearFocus()
+        self.setFocus()
         self.pressed_minus.stop()
         self.timer_minus_pressed.stop()
         self.step_button = 1
@@ -258,6 +272,8 @@ class Control(QMainWindow):
 
 
     def plus_released(self):
+        self.button_menu.clearFocus()
+        self.setFocus()
         self.pressed_plus.stop()
         self.timer_plus_pressed.stop()
         self.step_button = 1

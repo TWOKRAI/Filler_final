@@ -57,22 +57,12 @@ class View_control(QMainWindow):
         )
         
         app.setStyleSheet(new_stylesheet)
-    
-        self.hide()
 
         if app.window_filler.play == False:
             #app.threads.robot_filler.view_run() 
             self.view_start.emit()
         else:
             pass
-
-
-        # if id == 1:
-        #     self.view2 = True
-        #     app.threads.robot_filler.view_run()   
-        # else:
-        #     self.view2 = False
-                 
 
         if app.on_fullscreen: self.fullscreen()
 
@@ -86,7 +76,11 @@ class View_control(QMainWindow):
 
         self.focus_window = True
 
-        super().show()
+        if not self.isVisible():
+            super().show()
+        else:
+            self.hide()
+            super().show()
 
 
     def close(self):

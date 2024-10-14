@@ -138,8 +138,8 @@ class Robot_module(QObject):
 
 		self.axis_x = Axis('motor_x', self.motor_x)
 		self.axis_x.motor.enable_on(False)
-		self.axis_x.motor.speed_default = 0.00007
-		self.axis_x.motor.speed_def = 0.00007
+		self.axis_x.motor.speed_default = 0.00005
+		self.axis_x.motor.speed_def = 0.00005
 		self.axis_x.motor.direction = False
 		self.axis_x.step_angle = 0.04
 		self.axis_x.angle_0 = 0
@@ -165,8 +165,8 @@ class Robot_module(QObject):
 
 		self.axis_z = Axis('motor_z', self.motor_z)
 		self.axis_z.motor.enable_on(False)
-		self.axis_z.motor.speed_default = 0.00007
-		self.axis_z.motor.speed_def = 0.00007
+		self.axis_z.motor.speed_default = 0.0001
+		self.axis_z.motor.speed_def = 0.0001
 		self.axis_z.motor.direction = True
 		self.axis_z.direction_real = False
 		self.axis_z.direction_distance = False

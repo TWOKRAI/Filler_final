@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-06 10:53+0300\n"
+"POT-Creation-Date: 2024-10-14 02:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO+ZONE\n"
 "Last-Translator: FULL NAME EMAIL@ADDRESS\n"
 "Language-Team: LANGUAGE LL@li.org\n"
@@ -17,208 +17,265 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: myapp/templates/control.html:18
-msgid "Robot control"
-msgstr "Robotersteuerung"
 
-#: myapp/templates/control.html:23
-msgid "Robot calibration"
-msgstr "Roboterkalibrierung"
-
-#: myapp/templates/control.html:26
-msgid "Pull out the panel"
-msgstr "Bedienfeld herausziehen"
-
-#: myapp/templates/control.html:29
-msgid "Motor power supply"
-msgstr "Motorstromversorgung"
-
-#: myapp/templates/control.html:35 myapp/templates/settings1.html:27
-#: myapp/templates/settings2.html:88
-msgid "Back"
-msgstr "Zurück"
-
-#: myapp/templates/control.html:43 myapp/templates/settings2.html:99
-#: myapp/templates/settings2.html:108
-msgid "Confirm"
-msgstr "Bestätigen"
-
-#: myapp/templates/control.html:44 myapp/templates/settings2.html:100
-#: myapp/templates/settings2.html:109
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: myapp/templates/control.html:51
-msgid "Do you want to start calibrating the robot?"
-msgstr "Möchten Sie die Roboterkalibrierung starten?"
-
-#: myapp/templates/control.html:52
-msgid "Do you want to pull out the panel?"
-msgstr "Möchten Sie das Bedienfeld herausziehen?"
-
-#: myapp/templates/control.html:53
-msgid "Do you want to turn on/off the power to the motors?"
-msgstr "Möchten Sie die Stromversorgung der Motoren ein-/ausschalten?"
-
-#: myapp/templates/index.html:6
-msgid "Innotech filler"
-msgstr "Innotech Füller"
-
-#: myapp/templates/index.html:13 myapp/templates/settings1.html:15
+#: myapp/templates/control.html:16 myapp/templates/index.html:17
+#: myapp/templates/innotech.html:16 myapp/templates/settings1.html:16
+#: myapp/templates/settings2.html:16
 msgid "Logo"
 msgstr "Logo"
 
-#: myapp/templates/index.html:16
-msgid "Filler Parameters"
+#: myapp/templates/control.html:20
+msgid "Robot control"
+msgstr "Robotersteuerung"
+
+#: myapp/templates/control.html:25
+msgid "Robot calibration"
+msgstr "Roboterkalibrierung"
+
+#: myapp/templates/control.html:28
+msgid "Pull out the panel"
+msgstr "Bedienfeld herausziehen"
+
+#: myapp/templates/control.html:31
+msgid "Motor power supply"
+msgstr "Motorstromversorgung"
+
+#: myapp/templates/control.html:35 myapp/templates/innotech.html:31
+#: myapp/templates/settings1.html:33 myapp/templates/settings2.html:96
+msgid "Back"
+msgstr "Zurück"
+
+#: myapp/templates/control.html:45 myapp/templates/settings2.html:105
+#: myapp/templates/settings2.html:114
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: myapp/templates/control.html:46 myapp/templates/settings2.html:106
+#: myapp/templates/settings2.html:115
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: myapp/templates/control.html:53
+msgid "Do you want to start calibrating the robot?"
+msgstr "Möchten Sie die Roboterkalibrierung starten?"
+
+#: myapp/templates/control.html:54
+msgid "Do you want to pull out the panel?"
+msgstr "Möchten Sie das Bedienfeld herausziehen?"
+
+#: myapp/templates/control.html:55
+msgid "Do you want to turn on/off the power to the motors?"
+msgstr "Möchten Sie die Stromversorgung der Motoren ein-/ausschalten?"
+
+#: myapp/templates/index.html:8
+#, fuzzy
+#| msgid "Innotech filler"
+msgid "InnoFiller"
+msgstr "Innotech Füller"
+
+#: myapp/templates/index.html:21
+msgid "Filler parameters"
 msgstr "Füllparameter"
 
-#: myapp/templates/index.html:20
+#: myapp/templates/index.html:25
 msgid "Drink 1"
 msgstr "Getränk 1"
 
-#: myapp/templates/index.html:22 myapp/templates/index.html:27
+#: myapp/templates/index.html:27 myapp/templates/index.html:32
 msgid "ml"
 msgstr "ml"
 
-#: myapp/templates/index.html:25
+#: myapp/templates/index.html:30
 msgid "Drink 2"
 msgstr "Getränk 2"
 
-#: myapp/templates/index.html:45 myapp/templates/settings1.html:18
+#: myapp/templates/index.html:51 myapp/templates/settings1.html:20
 msgid "Language Settings"
 msgstr "Spracheinstellungen"
 
-#: myapp/templates/index.html:46
+#: myapp/templates/index.html:52
 msgid "System Settings"
 msgstr "Systemeinstellungen"
 
-#: myapp/templates/index.html:47
+#: myapp/templates/index.html:53
 msgid "Robot Settings"
 msgstr "Robotereinstellungen"
 
-#: myapp/templates/index.html:51
+#: myapp/templates/index.html:57
 msgid "ON"
 msgstr "EIN"
 
-#: myapp/templates/index.html:52
+#: myapp/templates/index.html:58
 msgid "OFF"
 msgstr "AUS"
 
-#: myapp/templates/index.html:54
+#: myapp/templates/index.html:60
 msgid "System ready"
-msgstr "System bereit"
+msgstr "System ist bereit"
 
-#: myapp/templates/index.html:55
+#: myapp/templates/index.html:61
 msgid "System not calibrated"
-msgstr "System nicht kalibriert"
+msgstr "System ist nicht kalibriert"
 
-#: myapp/templates/index.html:56
-msgid "Info 2"
-msgstr "Info 2"
+#: myapp/templates/index.html:62
+#, fuzzy
 
-#: myapp/templates/index.html:57
-msgid "Info 3"
-msgstr "Info 3"
+msgid "System error"
+msgstr "Systemfehler"
 
-#: myapp/templates/index.html:58
-msgid "Info 4"
-msgstr "Info 4"
+#: myapp/templates/index.html:65
+msgid " "
+msgstr " "
+
+#: myapp/templates/index.html:66
+msgid "Place the glass in the work area"
+msgstr "Stellen Sie das Glas in den Arbeitsbereich"
+
+#: myapp/templates/index.html:67 myapp/templates/index.html:78
+msgid "Glass found"
+msgstr "Glas gefunden"
+
+#: myapp/templates/index.html:68 myapp/templates/index.html:79
+msgid "Filling process in progress"
+msgstr "Füllvorgang läuft"
+
+#: myapp/templates/index.html:69 myapp/templates/index.html:80
+msgid "The drink is ready"
+msgstr "Das Getränk ist fertig"
+
+#: myapp/templates/index.html:71
+msgid "Turn on the system and place the glass in the work area for system calibration."
+msgstr "Schalten Sie das System ein und stellen Sie das Glas in den Arbeitsbereich zur Kalibrierung des Systems."
+
+#: myapp/templates/index.html:73
+msgid "Emergency button pressed"
+msgstr "Notfallknopf gedrückt"
+
+#: myapp/templates/index.html:77
+msgid "Scanning in progress, place the glass in the work area"
+msgstr "Scannen läuft, stellen Sie das Glas in den Arbeitsbereich"
+
+#: myapp/templates/index.html:81
+msgid "Switch to \"On\" and place the glass in the work area"
+msgstr ""
+
+#: myapp/templates/innotech.html:8
+msgid "InnoFiller - Inforamtion"
+msgstr ""
+
+#: myapp/templates/innotech.html:20
+msgid "Welcome to the InnoFiller app"
+msgstr "Willkommen bei der InnoFiller app"
+
+#: myapp/templates/innotech.html:23
+msgid ""
+"We are pleased to welcome you to our app for operating your new filling "
+"robot. Our company strives to offer you the most innovative and user-"
+"friendly solutions. We wish you a pleasant experience!"
+msgstr ""
+"Wir freuen uns, Sie bei unserer App zur Steuerung Ihres neuen Abfüllroboters "
+"begrüßen zu dürfen. Unser Unternehmen bemüht sich, Ihnen die innovativsten "
+"und benutzerfreundlichsten Lösungen anzubieten. Wir wünschen Ihnen eine "
+"angenehme Nutzung!"
+
+#: myapp/templates/innotech.html:26
+msgid "Sincerely, "
+msgstr "Mit freundlichen Grüßen, "
+
+#: myapp/templates/innotech.html:26
+msgid "the"
+msgstr "das"
+
+#: myapp/templates/innotech.html:26
+msgid " Innotech team"
+msgstr "Innotech Team"
 
 #: myapp/templates/settings1.html:8
 msgid "Innotech filler - Language Settings"
 msgstr "Innotech Füller - Spracheinstellungen"
 
-#: myapp/templates/settings1.html:22
-msgid "English"
-msgstr "Englisch"
-
-#: myapp/templates/settings1.html:23
-msgid "Русский"
-msgstr "Russisch"
-
-#: myapp/templates/settings1.html:24
-msgid "Deutsch"
-msgstr "Deutsch"
-
-#: myapp/templates/settings2.html:18
+#: myapp/templates/settings2.html:20
 msgid "Robot parameters"
 msgstr "Roboterparameter"
 
-#: myapp/templates/settings2.html:23
+#: myapp/templates/settings2.html:25
 msgid "Robot speed"
 msgstr "Robotergeschwindigkeit"
 
-#: myapp/templates/settings2.html:33
-msgid "Waiting time"
-msgstr "Wartezeit"
+#: myapp/templates/settings2.html:35
+msgid "Waiting time after filling"
+msgstr "Wartezeit nach dem Abfüllen"
 
-#: myapp/templates/settings2.html:38
+#: myapp/templates/settings2.html:40
 msgid "sec."
 msgstr "Sek."
 
-#: myapp/templates/settings2.html:43
+#: myapp/templates/settings2.html:45
 msgid "Lasermode"
 msgstr "Lasermodus"
 
-#: myapp/templates/settings2.html:47
+#: myapp/templates/settings2.html:49
 msgid "Off"
 msgstr "Aus"
 
-#: myapp/templates/settings2.html:48
+#: myapp/templates/settings2.html:50
 msgid "Constant"
 msgstr "Konstant"
 
-#: myapp/templates/settings2.html:49
+#: myapp/templates/settings2.html:51
 msgid "Flickering"
 msgstr "Flackernd"
 
-#: myapp/templates/settings2.html:54
+#: myapp/templates/settings2.html:56
 msgid "Automatic determination of glass volume"
 msgstr "Automatische Bestimmung des Glasvolumens"
 
-#: myapp/templates/settings2.html:65
+#: myapp/templates/settings2.html:67
 msgid "Checking for glass availability"
 msgstr "Überprüfung der Glasverfügbarkeit"
 
-#: myapp/templates/settings2.html:78
-msgid "QR code for application address"
-msgstr "QR-Code für die Anwendungsadresse"
+#: myapp/templates/settings2.html:80
+msgid "QR-code for the app"
+msgstr "QR-Code für die App"
 
+#: myapp/templates/settings2.html:86
 msgid "IP-address"
 msgstr "IP-Adresse"
 
-#: myapp/templates/settings2.html:85
+#: myapp/templates/settings2.html:89
 msgid "Show More"
 msgstr "Mehr anzeigen"
 
-#: myapp/templates/settings2.html:87
-msgid "Apply"
-msgstr "Anwenden"
-
-#: myapp/templates/settings2.html:91
+#: myapp/templates/settings2.html:93
 msgid "Default"
 msgstr "Standard"
 
-#: myapp/templates/settings2.html:98
+#: myapp/templates/settings2.html:94
+msgid "Apply"
+msgstr "Anwenden"
+
+#: myapp/templates/settings2.html:104
 msgid "Do you want to apply the settings?"
 msgstr "Möchten Sie die Einstellungen anwenden?"
 
-#: myapp/templates/settings2.html:107
+#: myapp/templates/settings2.html:113
 msgid "Do you want to make default settings?"
 msgstr "Möchten Sie die Standardeinstellungen verwenden?"
 
+#~ msgid "Info 2"
+#~ msgstr "Info 2"
 
-msgid "Welcome to the InnoFiller app"
-msgstr "Willkommen bei der InnoFiller app"
+#~ msgid "Info 3"
+#~ msgstr "Info 3"
 
-msgid "We are delighted to welcome you to our app for managing your new dispenser! Our company aims to provide you with the most innovative and convenient solutions. We wish you a pleasant experience!"
-msgstr "Wir freuen uns, Sie in unserer App zur Verwaltung Ihres neuen Spenders begrüßen zu dürfen! Unser Unternehmen strebt danach, Ihnen die innovativsten und bequemsten Lösungen zu bieten. Wir wünschen Ihnen eine angenehme Nutzung!"
+#~ msgid "Info 4"
+#~ msgstr "Info 4"
 
-msgid "Sincerely, "
-msgstr "Mit freundlichen Grüßen, "
+#~ msgid "English"
+#~ msgstr "Englisch"
 
-msgid "the"
-msgstr "das"
+#~ msgid "Русский"
+#~ msgstr "Russisch"
 
-msgid " Innotech team"
-msgstr "Innotech Team"
+#~ msgid "Deutsch"
+#~ msgstr "Deutsch"

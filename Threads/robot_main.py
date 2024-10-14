@@ -17,6 +17,9 @@ class Robot_filler(QThread):
     prepare = pyqtSignal()
     start_state = pyqtSignal(int)
 
+    info_message = pyqtSignal(int, int)
+
+
     def __init__(self, camera_on = True, neuron_on = True, interface_on = True, robot_on = False) -> None:
         super().__init__()
 
@@ -205,8 +208,11 @@ class Robot_filler(QThread):
 
             self.laser.on_off(1)
 
-            QThread.msleep(1000)
+            if self.pump_station.pumping_ready:
+                self.info_message.emit(0, 1)
 
+            QThread.msleep(1000)
+            
             if not self.filler: break
             self.camera.running()
 
@@ -214,6 +220,9 @@ class Robot_filler(QThread):
             find_tuple = self.neuron.find_objects()
 
             if find_tuple[1] > 0:
+                if self.pump_station.pumping_ready:
+                    self.info_message.emit(0, 2)
+            
                 if self.robot.calibration_ready == False:
                     self.robot.calibration()
 

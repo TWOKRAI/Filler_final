@@ -50,22 +50,22 @@ class List_control(QMainWindow):
         self.button_view.clicked.connect(self.view)
 
 
-        self.game_text = [' НАСТРОЙКИ', ' SETTINGS', 'EINSTELLUNGEN']
+        self.game_text = [' QR-KОД', ' QR-СODE', ' QR-СODE']
         
         self.button_game.setMinimumSize(button_size)
         self.button_game.setIconSize(icon_size)
         self.button_game.setFont(font)
 
-        self.button_game.clicked.connect(self.settings)
+        self.button_game.clicked.connect(self.statistics)
 
 
-        self.statistics_text = [' QR-KОД', ' QR-СODE', ' QR-СODE']
+        self.statistics_text = [' НАСТРОЙКИ', ' SETTINGS', 'EINSTELLUNGEN']
         
         self.button_qrcode.setMinimumSize(button_size)
         self.button_qrcode.setIconSize(icon_size)
         self.button_qrcode.setFont(font)
 
-        self.button_qrcode.clicked.connect(self.statistics)
+        self.button_qrcode.clicked.connect(self.settings)
 
         self.animation = QPropertyAnimation(self, b'windowOpacity')
 
@@ -80,7 +80,12 @@ class List_control(QMainWindow):
         if app.on_fullscreen: self.fullscreen()
 
         #self.language(app.lang)
-        super().show()
+
+        if not self.isVisible():
+            super().show()
+        else:
+            self.hide()
+            super().show()
         
 
     def set_icons(self):
@@ -90,10 +95,11 @@ class List_control(QMainWindow):
         file_path = os.path.join('/home/innotech/Project/Filler/Filler_interface', 'Style_windows', 'icons_black', 'icons8-preview-pane-100.png')
         self.button_view.setIcon(QIcon(file_path))
 
-        file_path = os.path.join('/home/innotech/Project/Filler/Filler_interface', 'Style_windows', 'icons_black', 'icons8-automation-100.png')
+        #file_path = os.path.join('/home/innotech/Project/Filler/Filler_interface', 'Style_windows', 'icons_black', 'icons8-automation-100.png')
+        file_path = os.path.join('/home/innotech/Project/Filler/Filler_interface', 'Style_windows', 'icons_black', 'icons8-qr-code-96.png')
         self.button_game.setIcon(QIcon(file_path))
 
-        file_path = os.path.join('/home/innotech/Project/Filler/Filler_interface', 'Style_windows', 'icons_black', 'icons8-qr-code-96.png')
+        file_path = os.path.join('/home/innotech/Project/Filler/Filler_interface', 'Style_windows', 'icons_black', 'icons8-automation-100.png')
         self.button_qrcode.setIcon(QIcon(file_path))
 
 
@@ -123,4 +129,4 @@ class List_control(QMainWindow):
     
     def statistics(self):
         app.window_qrcode.show()
-        self.hide()
+        #self.hide()

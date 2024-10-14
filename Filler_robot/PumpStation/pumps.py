@@ -18,6 +18,8 @@ class Pump_station(QObject):
     block_data_on = pyqtSignal()
     block_data_off = pyqtSignal()
 
+    info_message = pyqtSignal(int, int)
+
     
     def __init__(self):
         super().__init__()
@@ -107,11 +109,14 @@ class Pump_station(QObject):
         #     ml_1, ml_2 = self.russian_rullete(ml_1, ml_2)
 
         if self.pumping_ready == True:
+            self.info_message.emit(0, 3)
             asyncio.run(self._all_pour_async(ml_1, ml_2))
+            self.info_message.emit(0, 4)
         else:
             self.bottles_value.emit(30, 30)
             asyncio.run(self._all_pour_async(30, 30))
             self.pumping_ready = True
+            self.info_message.emit(0, 1)
 
         self.enable_motors(False)
 
@@ -216,7 +221,7 @@ class Pump_station(QObject):
             else:
                 self.bottles_value.emit(0, 0)
             
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.05)
 
     
     # async def _pour_async2(self, motor, turn):

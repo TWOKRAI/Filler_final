@@ -259,6 +259,9 @@ class App(QApplication):
         from Filler_interface.Window_pop_up.pop_up_control2 import Confirm_control
         self.window_pop_up = Confirm_control()
 
+        from Filler_interface.Window_pop_up.pop_up_ONE_control import Confirm_control
+        self.window_pop_up_one = Confirm_control()
+
         from Filler_interface.Window_low.low_control import Low_control
         self.window_low = Low_control()
 

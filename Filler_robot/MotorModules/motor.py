@@ -298,8 +298,8 @@ class Motor:
 		
 		steps = abs(steps)
 
-		acceleration_steps = acc_step * 3
-		deceleration_steps = dec_step * 3
+		acceleration_steps = acc_step 
+		deceleration_steps = dec_step
 
 		constant_speed_steps = steps - acceleration_steps - deceleration_steps
 		
@@ -317,7 +317,7 @@ class Motor:
 			self.pin_step.value = 0.5
 			self.step_info_1 = i
 
-			await asyncio.sleep(1 / current_speed / 20)
+			await asyncio.sleep(1 / current_speed)
 
 		self.pin_step.frequency = speed
 		
@@ -328,7 +328,7 @@ class Motor:
 			self.pin_step.value = 0.5
 			self.step_info_2 = i
 
-			await asyncio.sleep(1 / speed / 20)
+			await asyncio.sleep(1 / speed)
 			
 		for i in range(deceleration_steps):
 			if self.stop == True:
@@ -339,7 +339,7 @@ class Motor:
 			self.pin_step.value = 0.5
 			self.step_info_3 = i
 
-			await asyncio.sleep(1 / current_speed / 100)		
+			await asyncio.sleep(1 / current_speed)		
 
 
 	def freq_new(self, steps, speed, acc_step, dec_step, start_speed, end_speed):

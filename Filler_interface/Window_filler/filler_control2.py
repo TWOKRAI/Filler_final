@@ -154,6 +154,8 @@ class Filler_control(Control):
         self.button_start_update(0)
         self.enable_control()
 
+        self.info_message(1, 5)
+
         
     def show(self):
         super().show()
@@ -356,7 +358,7 @@ class Filler_control(Control):
 
 
     def value_update_pump_1(self):
-        step = 1000 * 0.0035
+        step = 1000 * 0.0015
         #step = int(round(step, 0))
         self.value_pump_1 = self.value_pump_1 - step
 
@@ -710,22 +712,82 @@ class Filler_control(Control):
 
     def button_start_clicked(self):
         self.play = not self.play
-        # print('start')
 
         if self.play == True:
-            self.start_filler.emit()
-            app.database.update_data('myapp_filler', 'status', True)
-
-            self.button_start_update(1)
+            self.show_popup_calibr()
         else:
-            self.stop_filler.emit()
-            app.database.update_data('myapp_filler', 'status', False)
-            # app.threads.robot_filler.filler_stop()
-
-            # app.threads.robot_filler.robot.stop_motors()
-            # app.threads.robot_filler.all_stop()
-
-            self.button_start_update(0)
+            self.filler_stop()
 
 
-               
+    def filler_run(self):
+        self.start_filler.emit()
+        app.database.update_data('myapp_filler', 'status', True)
+
+        self.button_start_update(1)
+
+
+    def filler_stop(self):
+        self.stop_filler.emit()
+        app.database.update_data('myapp_filler', 'status', False)
+        
+        self.button_start_update(0)
+    
+
+    def show_popup_calibr(self):
+        pop_show_text = {
+            0: 'Вы хотите сделать калибровку системы?',
+            1: 'Do you want to make the settings default?',
+            2: 'Möchten Sie die Einstellungen als Standard festlegen?',
+        }
+
+        app.window_pop_up.text = pop_show_text
+        
+        if not app.window_pop_up.isVisible():
+            app.window_pop_up.show(self.calibr_confirm, func_cancel = self.calibr_cancel)
+        else:
+            app.window_pop_up.hide()
+            app.window_pop_up.show(self.calibr_confirm,  func_cancel = self.calibr_cancel)
+        
+    
+    def calibr_confirm(self):
+        app.threads.robot_filler.pump_station.pumping_ready = False
+        print('app.threads.robot_filler.pump_station.pumping_ready', app.threads.robot_filler.pump_station.pumping_ready)
+
+        self.info_message(1, 5)
+
+        app.window_pop_up_one.show(self.filler_run)
+
+
+    def calibr_cancel(self):
+        app.threads.robot_filler.pump_station.pumping_ready = True
+        print('app.threads.robot_filler.pump_station.pumping_ready', app.threads.robot_filler.pump_station.pumping_ready)
+
+        self.info_message(0, 0)
+
+        self.filler_run()
+
+
+    def info_message(self, info_message = 0, info2_message = 0):
+        match info_message:
+            case 0:
+                app.database.update_data('myapp_filler', 'info', 0)
+            case 1:
+                app.database.update_data('myapp_filler', 'info', 1)
+            case 2:
+                app.database.update_data('myapp_filler', 'info', 2)
+
+        match info2_message:
+            case 0:
+                app.database.update_data('myapp_filler', 'info2', 0)
+            case 1:
+                app.database.update_data('myapp_filler', 'info2', 1)
+            case 2:
+                app.database.update_data('myapp_filler', 'info2', 2)
+            case 3:
+                app.database.update_data('myapp_filler', 'info2', 3)
+            case 4:
+                app.database.update_data('myapp_filler', 'info2', 4)
+            case 5:
+                app.database.update_data('myapp_filler', 'info2', 5)
+            case 6:
+                app.database.update_data('myapp_filler', 'info2', 6)

@@ -136,33 +136,45 @@ class Cip_control(Control):
 
 
     def show(self):
-        super().show()
+        if not self.isVisible():
+            super().show()
+        else:
+            self.hide()
+            super().show()
 
         self.pop_up_cip()
 
 
     def pop_up_cip(self):
-        app.window_pop_up.hide()
-        app.window_pop_up.text = [
+        pop_show_text = [
             'ОСТОРОЖНО! Нажав подтвердить, робот выйдет в рабочую зону!', 
             'CAUTION! By pressing confirm, the robot will enter the work area!',
             'VORSICHT! Durch Bestätigen betritt der Roboter den Arbeitsbereich!',
         ]
 
-        app.window_pop_up.show(self.move_cip)
+        app.window_pop_up.text = pop_show_text
+
+        if not app.window_pop_up.isVisible():
+            app.window_pop_up.show(self.move_cip)
+        else:
+            app.window_pop_up.hide()
+            app.window_pop_up.show(self.move_cip)
 
 
     def show_popup(self):
-        app.window_pop_up.hide()
-        app.window_pop_up.show(self.reset)
-
         pop_show_text = {
             0: 'Вы хотите сделать параметры по умолчанию?',
             1: 'Do you want to make the settings default?',
             2: 'Möchten Sie die Einstellungen als Standard festlegen?',
         }
 
-        app.window_pop_up.label_2.setText(pop_show_text[self.lang])
+        app.window_pop_up.text = pop_show_text
+        
+        if not app.window_pop_up.isVisible():
+            app.window_pop_up.show(self.reset)
+        else:
+            app.window_pop_up.hide()
+            app.window_pop_up.show(self.reset)
 
         
     def move_cip(self):

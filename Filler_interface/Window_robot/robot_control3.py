@@ -122,12 +122,17 @@ class Robot_control(Control):
     
     def show(self):
         self.get_parametrs()
-        super().show()
+        
+        if not self.isVisible():
+            super().show()
+        else:
+            self.hide()
+            super().show()
 
 
     def show_popup(self):
-        app.window_pop_up.hide()
-        app.window_pop_up.show(self.reset)
+        self.button_reset.clearFocus()
+        self.setFocus()
 
         pop_show_text = {
             0: 'Вы хотите сделать параметры по умолчанию?',
@@ -135,9 +140,13 @@ class Robot_control(Control):
             2: 'Möchten Sie die Einstellungen als Standard festlegen?',
         }
 
-        app.window_pop_up.label_2.setText(pop_show_text[self.lang])
+        app.window_pop_up.text = pop_show_text
 
-        self.setFocus()
+        if not app.window_pop_up.isVisible():
+            app.window_pop_up.show(self.reset)
+        else:
+            app.window_pop_up.hide()
+            app.window_pop_up.show(self.reset)
 
 
     def update(self):
@@ -172,7 +181,6 @@ class Robot_control(Control):
     @enable_marker_decorator('enable_marker')
     def button_reset_released(self):
         self.timer_exit.stop()
-        self.setFocus()
 
 
     def on_timer_reset(self):
@@ -250,7 +258,15 @@ class Robot_control(Control):
         self.autovalue = 1
         self.presence_cup = 1
 
-        self.param_list = self.get_parametrs()
+        self.param_list = {
+            1: self.speed_robot,
+            2: self.time_robot,
+            3: self.laser_mode,
+            4: self.autovalue,
+            5: self.presence_cup,
+        }
+
+        self.put_parametrs()
         self.memory_write(self.param_list)
         
         app.language()
@@ -567,8 +583,9 @@ class Robot_control(Control):
     
     @enable_marker_decorator('enable_marker')
     def minus_released(self):
-        super().minus_released()
+        self.button_minus.clearFocus()
         self.setFocus()
+        super().minus_released()
 
         match self.param_num:
             case 1:
@@ -658,8 +675,10 @@ class Robot_control(Control):
 
     @enable_marker_decorator('enable_marker')
     def plus_released(self):
-        super().plus_released()
+        self.button_plus.clearFocus()
         self.setFocus()
+
+        super().plus_released()
 
         match self.param_num:
             case 1:
