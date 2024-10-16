@@ -188,6 +188,8 @@ class Pump_station(QObject):
         while not self.stop2:
             if pins.button_stop.get_value():
                 self.stop_pumps()
+            
+            await asyncio.sleep(0.05)
 
             if self.stop2 == True or (self.pump_1.ready == True and self.pump_2.ready == True):
                 self.pump_1.motor.stop = True
@@ -199,7 +201,7 @@ class Pump_station(QObject):
 
                 raise asyncio.CancelledError()
             
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.05)
 
 
     async def _monitor_filler(self):
@@ -210,18 +212,22 @@ class Pump_station(QObject):
             else:
                 value1 = 0
 
+            await asyncio.sleep(0.05)
+
             if not self.pump_2.ready_1:
                 value2 = self.turn2 - self.pump_2.motor.step_info_2 * self.pump_2.step_amount
                 value2 = int(round(value2, 0))
             else:
                 value2 = 0
+
+            await asyncio.sleep(0.05)
             
             if not self.pump_1.ready_1 or not self.pump_2.ready_1:
                 self.bottles_value.emit(value1, value2)
             else:
                 self.bottles_value.emit(0, 0)
             
-            await asyncio.sleep(0.05)
+            await asyncio.sleep(0.1)
 
     
     # async def _pour_async2(self, motor, turn):

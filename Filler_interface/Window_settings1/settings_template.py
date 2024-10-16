@@ -77,12 +77,12 @@ class Control(QMainWindow):
         pass
     
     
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def button_menu_pressed(self):    
         self.timer.start()
 
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def button_menu_released(self):
         self.button_menu.clearFocus()
         self.setFocus()
@@ -246,11 +246,12 @@ class Control(QMainWindow):
 
 
     def minus_released(self):
-        self.button_menu.clearFocus()
-        self.setFocus()
         self.pressed_minus.stop()
         self.timer_minus_pressed.stop()
         self.step_button = 1
+
+        self.button_menu.clearFocus()
+        self.setFocus()
 
 
     def minus_enable(self):
@@ -272,15 +273,13 @@ class Control(QMainWindow):
 
 
     def plus_released(self):
-        self.button_menu.clearFocus()
-        self.setFocus()
         self.pressed_plus.stop()
         self.timer_plus_pressed.stop()
         self.step_button = 1
 
+        self.button_menu.clearFocus()
+        self.setFocus()
+
 
     def plus_enable(self):
         pass
-
-
-window_setting = Control()

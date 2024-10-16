@@ -17,13 +17,15 @@ class Thread():
     
     def connects(self):
         self.connect_app_thread()
-        self.connect_input_thread()
+        #self.connect_input_thread()
+        self.input_request.connect_0 = self
+        self.input_request.connect()
         self.connect_robot_thread()
         
     
     def connect_app_thread(self):
-        app.window_filler.start_filler.connect(self.input_request.block_button_on)
-        app.window_filler.stop_filler.connect(self.input_request.block_button_off)
+        # app.window_filler.start_filler.connect(self.input_request.block_button_on)
+        # app.window_filler.stop_filler.connect(self.input_request.block_button_off)
         app.window_filler.start_filler.connect(self.robot_filler.filler_run)
         app.window_filler.stop_filler.connect(self.robot_filler.pump_station.stop_pumps)
         app.window_filler.stop_filler.connect(self.robot_filler.filler_stop)
@@ -34,10 +36,13 @@ class Thread():
         app.window_prepare.reset_calibration.connect(self.robot_filler.reset_calibration)
         app.window_prepare.pumping.connect(self.robot_filler.pumping)
 
+
+        # app.button_start.connect(self.input_request.block_button_on)
+        # app.button_stop.connect(self.input_request.block_button_off)
         app.button_start.connect(self.robot_filler.filler_run)
         app.button_stop.connect(self.robot_filler.pump_station.stop_pumps)
         app.button_stop.connect(self.robot_filler.filler_stop)
-
+        
         app.button_calibration.connect(self.robot_filler.calibration_only_run)
         app.button_motor.connect(self.robot_filler.enable_on_off)
 
@@ -76,15 +81,19 @@ class Thread():
             self.input_request.close_error.connect(app.window_error.close)
 
             self.input_request.motor_monitor.on_signal.connect(app.window_start.close)
-            self.input_request.motor_monitor.button_signal.connect(app.window_start.show)
+            
+            self.input_request.motor_monitor.off_signal.connect(app.window_filler.filler_stop)
             self.input_request.motor_monitor.off_signal.connect(app.window_start.show)
             self.input_request.motor_monitor.off_signal.connect(app.window_view.close)
+            self.input_request.motor_monitor.off_signal.connect(app.window_view.close)
+
             # \\self.input_request.motor_monitor.off_signal.connect(self.stop_input_thread)
 
 
             # app.window_filler.start_filler.connect(self.input_request.block_button_on)
             # app.window_filler.stop_filler.connect(self.input_request.block_button_off)
-
+            
+            #self.input_request.motor_monitor.button_signal.connect(app.window_start.show)
             self.input_request.motor_monitor.button_signal.connect(self.robot_filler.pump_station.stop_pumps)
             self.input_request.motor_monitor.button_signal.connect(self.robot_filler.filler_stop)
             self.input_request.motor_monitor.button_signal.connect(app.window_prepare.reset)
@@ -177,3 +186,7 @@ class Thread():
             self.robot_filler.stop()
         
         #self.robot_filler = None
+
+    
+    def start_motor_monitor(self):
+        self.motor_monitor.start()

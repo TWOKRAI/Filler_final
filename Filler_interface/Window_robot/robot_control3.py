@@ -128,6 +128,9 @@ class Robot_control(Control):
         else:
             self.hide()
             super().show()
+        
+        self.timer_plus_pressed.stop()
+        self.timer_minus_pressed.stop()
 
 
     def show_popup(self):
@@ -173,12 +176,12 @@ class Robot_control(Control):
         self.memory_write(self.param_list)
         
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def button_reset_pressed(self):
         self.timer_exit.start()
 
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def button_reset_released(self):
         self.timer_exit.stop()
 
@@ -581,7 +584,7 @@ class Robot_control(Control):
         # print('click') 
        
     
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def minus_released(self):
         self.button_minus.clearFocus()
         self.setFocus()
@@ -673,7 +676,7 @@ class Robot_control(Control):
         self.enable_control()
     
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def plus_released(self):
         self.button_plus.clearFocus()
         self.setFocus()

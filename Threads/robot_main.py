@@ -162,9 +162,12 @@ class Robot_filler(QThread):
 
 
     def view_run2(self):
+        self.neuron.threshold = 0.4
+        self.neuron.nmsthreshold = 0.4
+
         while self.view:
             print('view run')
-            self.laser.on_off(1)
+            self.laser.on_off(0)
             self.robot.enable_motors(False)
 
             if not self.first_view:
@@ -199,6 +202,10 @@ class Robot_filler(QThread):
 
 
     def filler_run2(self):
+        index_forget = 0
+
+        self.neuron.forget()
+
         while self.filler:
             if not self.filler: break
 
@@ -217,9 +224,13 @@ class Robot_filler(QThread):
             self.camera.running()
 
             if not self.filler: break
+            self.neuron.threshold = 0.05
+            self.neuron.nmsthreshold = 0.05
             find_tuple = self.neuron.find_objects()
 
             if find_tuple[1] > 0:
+                index_forget = 0 
+
                 if self.pump_station.pumping_ready:
                     self.info_message.emit(0, 2)
             
@@ -236,11 +247,19 @@ class Robot_filler(QThread):
                 self.neuron.neuron_vision()
 
                 self.time = 0
+            else:
+                index_forget += 1
+
+            if index_forget >= 2:
+                self.neuron.forget()
+                index_forget = 0
 
             self.interface.running()
             
             if not self.filler: break
             self.laser.on_off(1)
+            QThread.msleep(500)
+            self.camera.running()
             self.robot.running()
         
         self.start_state.emit(0)

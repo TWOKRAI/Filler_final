@@ -115,6 +115,7 @@ class List_control(QMainWindow):
 
     def view(self):
         app.window_view.show()
+        self.hide()
 
     
     def datetime(self):
@@ -129,4 +130,4 @@ class List_control(QMainWindow):
     
     def statistics(self):
         app.window_qrcode.show()
-        #self.hide()
+        self.hide()

@@ -652,7 +652,3 @@ class Control(Control):
         else:
             self.button_right.setEnabled(True)
 
-            
-
-
-window_setting1 = Control()

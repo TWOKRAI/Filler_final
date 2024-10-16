@@ -171,7 +171,7 @@ class Main_filler_control(QMainWindow):
         self.timer_enable.start()
 
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def start(self):
         self.button_start.clearFocus()
         self.setFocus()
@@ -187,7 +187,7 @@ class Main_filler_control(QMainWindow):
         #self.hide()
         
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def robot(self):
         self.button_robot.clearFocus()
         self.setFocus()
@@ -198,7 +198,7 @@ class Main_filler_control(QMainWindow):
         #self.hide()
     
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def settings(self):
         self.button_settings.clearFocus()
         self.setFocus()
@@ -209,7 +209,7 @@ class Main_filler_control(QMainWindow):
         #self.hide()
        
     
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def view(self):
         self.button_view.clearFocus()
         self.all_enable_off()
@@ -220,7 +220,7 @@ class Main_filler_control(QMainWindow):
         #self.hide()
 
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def cip(self):
         self.button_cip.clearFocus()
         self.setFocus()

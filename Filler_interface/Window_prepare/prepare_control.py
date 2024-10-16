@@ -134,7 +134,7 @@ class Prepare_control(QMainWindow):
         self.timer_enable.start()
 
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def show_popup(self):
         app.window_pop_up.hide()
         app.window_pop_up.show(self.reset)
@@ -180,12 +180,12 @@ class Prepare_control(QMainWindow):
         pass
 
     
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def button_menu_pressed(self):
         self.timer.start()
 
 
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def button_menu_released(self):
         if  app.threads.robot_filler.pumping_ready != True:
             self.reset()
@@ -275,7 +275,7 @@ class Prepare_control(QMainWindow):
         pass 
 
     
-    @enable_marker_decorator('enable_marker')
+    #@enable_marker_decorator('enable_marker')
     def button_calibr_clicked(self):
         self.param_num += 1
 

@@ -4,6 +4,7 @@ import time
 import math
 import os
 import time
+from skimage.metrics import structural_similarity as ssim
 
 from Lib.Decorators.wrapper import _timing
 
@@ -95,6 +96,9 @@ class Neuron:
 	
 
 	def neuron_vision(self):
+		self.threshold = 0.4
+		self.nmsthreshold = 0.4
+
 		if self.connect_0.interface != None:
 			self.id = 0
 			data = []
@@ -295,7 +299,54 @@ class Neuron:
 		else:
 			#print('Стакан нету')
 			return False
+
+
+	def compare_images(self, obj):
+		x1 = obj[4]
+		y1 = obj[5]
+		w = obj[6]
+		h = obj[7]
+		xr_center = obj[8]
+		yr_center = obj[9]	
+		perspective = obj[10]
+		xr_center_2 = obj[11]
+		yr_center_2 = obj[12]
 		
+		image_1 = self.connect_0.camera.image_copy
+		image_2 = self.connect_0.camera.read_cam()
+
+		image_1_gray = cv2.cvtColor(image_1, cv2.COLOR_BGR2GRAY)
+		image_2_gray = cv2.cvtColor(image_2, cv2.COLOR_BGR2GRAY)
+
+		image_1_gray = cv2.GaussianBlur(image_1_gray, (3, 3), 0)
+		image_2_gray = cv2.GaussianBlur(image_2_gray, (3, 3), 0)
+
+		image_1_gray = cv2.medianBlur(image_1_gray, 3)
+		image_2_gray = cv2.medianBlur(image_2_gray, 3)
+
+		cropped_image_1 = image_1_gray[y1 + abs(y1 - yr_center) + 30: y1 + h + 2, x1 + 10 : x1 + w - 10]
+		cropped_image_2 = image_2_gray[y1 + abs(y1 - yr_center) + 30: y1 + h + 2, x1 + 10: x1 + w  - 10]
+		
+		current_dir = os.path.dirname(os.path.abspath(__file__))
+
+		cv2.imwrite(os.path.join(current_dir, 'cropped_image.png'), cropped_image_1)
+		cv2.imwrite(os.path.join(current_dir, 'cropped_image_2.png'), cropped_image_2)
+
+		if cropped_image_1.shape == cropped_image_2.shape:
+			similarity, _  = ssim(cropped_image_1, cropped_image_2,  win_size=7, gradient=True, data_range=255, full=False)
+			similarity = similarity * 100
+		else:
+			similarity = 0
+		
+		# print(f"Схожесть изображений: {similarity:.2f}%")
+
+		if similarity >= 60:
+			# print('Стакан есть')
+			return True
+		else:
+			# print('Стакан нету')
+			return False
+
 
 	def filter(self, objects_list):
 		objects_new = []
@@ -315,9 +366,9 @@ class Neuron:
 			if find == True:
 				should_add = True
 
-				# if xr_center < 210 or xr_center > 440:
-				# 	print('X limit')
-				# 	continue
+				if xr_center < 210 or xr_center > 440:
+					print('X limit')
+					continue
 
 				# if yr_center < 345 or yr_center > 460:
 				# 	print('Y limit')

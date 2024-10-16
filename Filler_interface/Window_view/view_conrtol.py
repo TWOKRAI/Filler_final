@@ -95,8 +95,9 @@ class View_control(QMainWindow):
         app.setStyleSheet(new_stylesheet)
 
         self.focus_window = False
-
+        
         self.hide()
+        
 
 
     def button_raise(self):

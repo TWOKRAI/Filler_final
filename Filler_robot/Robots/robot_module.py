@@ -165,8 +165,8 @@ class Robot_module(QObject):
 
 		self.axis_z = Axis('motor_z', self.motor_z)
 		self.axis_z.motor.enable_on(False)
-		self.axis_z.motor.speed_default = 0.0001
-		self.axis_z.motor.speed_def = 0.0001
+		self.axis_z.motor.speed_default = 0.00014
+		self.axis_z.motor.speed_def = 0.00014
 		self.axis_z.motor.direction = True
 		self.axis_z.direction_real = False
 		self.axis_z.direction_distance = False
@@ -669,7 +669,8 @@ class Robot_module(QObject):
 				
 				if self.button_stop == False:
 					if app.window_robot.presence_cup == 1:
-						presence = self.connect_0.neuron.compare_images_feature_matching(list_objects[i])
+						# presence = self.connect_0.neuron.compare_images_feature_matching(list_objects[i])
+						presence = self.connect_0.neuron.compare_images(list_objects[i])
 					else:
 						presence = True
 

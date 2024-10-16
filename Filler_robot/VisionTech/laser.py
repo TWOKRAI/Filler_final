@@ -65,6 +65,3 @@ class Laser:
     
     def first_start(self):
         self.freq_func(100, 40, self.step)
-
-
-

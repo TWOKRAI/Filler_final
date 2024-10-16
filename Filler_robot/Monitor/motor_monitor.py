@@ -43,7 +43,7 @@ class Motor_monitor(QThread):
 
 
     def run(self):
-        self.button_signal.emit()
+        #self.button_signal.emit()
 
         self.running = True 
         
@@ -53,6 +53,8 @@ class Motor_monitor(QThread):
         self.motor.enable_on(False)
         self.motor.null_value()
 
+        self.state_button = not self.state_button
+
         if switch_in == True:
             distance = -self.distance
 
@@ -60,7 +62,7 @@ class Motor_monitor(QThread):
 
         elif switch_out == True:
             distance = self.distance
-            self.off_signal.emit()
+            #self.off_signal.emit()
 
             self.direct = False
 
@@ -73,7 +75,7 @@ class Motor_monitor(QThread):
                 distance = self.distance
 
                 self.direct = False
-        
+
         asyncio.run(self._move_async(distance, detect = True))
         self.direction = not self.direction
 
@@ -104,10 +106,10 @@ class Motor_monitor(QThread):
                 self.not_button = True
 
             if button and self.not_button:
-                self.state_button = not self.state_button
+                # self.state_button = not self.state_button
                 self.not_button = False
                 raise asyncio.CancelledError()
-            
+
             if button_stop:
                 raise asyncio.CancelledError()
             
