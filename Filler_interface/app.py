@@ -12,7 +12,6 @@ from Server2.database_manager import DatabaseManager
 from Filler_interface.Style_windows.style import Style
 
 
-
 def enable_marker_decorator(marker_attr):
     def decorator(func):
         def wrapper(self, *args, **kwargs):
@@ -22,7 +21,6 @@ def enable_marker_decorator(marker_attr):
                 print(f"{func.__name__} не выполнена, так как {marker_attr} == False")
         return wrapper
     return decorator
-
 
 
 class App(QApplication):
@@ -131,7 +129,7 @@ class App(QApplication):
         #         # if focus_widget:
         #         #     focus_widget.clearFocus()
 
-        
+
         if event.type() == QEvent.MouseButtonPress:
             self.datetime_reset()
             self.database_reset()

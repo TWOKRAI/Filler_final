@@ -41,6 +41,8 @@ class Input_request(QThread):
         self.button = False
         self.first = False
 
+        self.first_calibration = False
+
         self.block = False
 
         self.monitor_run = False
@@ -144,7 +146,14 @@ class Input_request(QThread):
         self.start_show.emit()
         QThread.msleep(100)
         self.view_close.emit()
+
+        if not self.first_calibration:
+            self.starting.emit()
+            self.first_calibration = True
+            
         
+        QThread.msleep(100)
+
         if not self.motor_monitor.isRunning():
             QThread.msleep(100)
             self.motor_monitor.start()

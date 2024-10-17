@@ -430,15 +430,20 @@ class Robot_module(QObject):
 		while not self.button_stop:
 			if self.stopped:
 				break
+						
+			if self.move_home and abs(self.axis_y.motor.distance - self.axis_y.motor.distance_step - 500) < 200:
+				self.axis_z.motor.enable_on(False)
 
 			switch_y = pins.switch_y.get_value()
+
+			await asyncio.sleep(0.005)
 
 			if switch_y:
 				self.axis_y.motor.stop = True
 				self.axis_y.motor.ready = True
 				break
 				
-			await asyncio.sleep(0.01)
+			await asyncio.sleep(0.005)
 
 	
 	async def _limit(self):
@@ -475,7 +480,7 @@ class Robot_module(QObject):
 		if distance_y != 0:
 			tasks.append(asyncio.create_task(self.axis_y.motor.move(distance_y, async_mode=True, time_start = self.time_start_y)))
 
-		if distance_z != 0 and self.move_home == False:
+		if distance_z != 0:
 			tasks.append(asyncio.create_task(self.axis_z.motor.move(distance_z, async_mode=True, time_start = self.time_start_z)))
 			
 		try:
@@ -502,13 +507,6 @@ class Robot_module(QObject):
 
 
 	def move(self, distance_x, distance_y, distance_z, detect = False):
-		#self.connect_0.laser.on_off(0)
-		
-		# speed = (10 - app.window_robot.speed_robot) / 5000
-		# speed = round(speed, 6)
-
-		# speed = app.window_robot.speed_robot
-
 		speed = (100 - app.window_robot.speed_robot) / 50000
 		speed = round(speed, 6)
 
@@ -573,11 +571,9 @@ class Robot_module(QObject):
 
 		# input('GO???')
 
-
 		self.distance_x_end = self.distance_x
 		self.distance_y_end = self.distance_y
 		self.distance_z_end = self.distance_z
-
 
 		self.time_start_z = 0.5
 	
@@ -662,7 +658,8 @@ class Robot_module(QObject):
 					self.connect_0.neuron.memory_objects = list_objects
 					self.joker = 0
 					continue
-					
+				
+				self.move_home = False
 				self.go_to_point(x, y, z)
 
 				# self.connect_0.neuron.find_objects()
@@ -690,7 +687,6 @@ class Robot_module(QObject):
 						self.connect_0.neuron.memory_objects = list_objects
 					else:
 						self.joker += 1
-
 
 					self.connect_0.interface.save_image()
 
@@ -811,7 +807,7 @@ class Robot_module(QObject):
 			self.time_start_y = 0.5
 
 		# self.axis_z.motor.enable_on(False)
-		self.move_home = False
+		self.move_home = True
 		self.move(-self.distance_x_end, -self.distance_y_end - 500, -self.distance_z_end, detect = True)
 		self.move_home = False
 		self.move(0, -7, 0)

@@ -91,6 +91,7 @@ class Neuron:
 		self.memory_objects = []
 		self.objects = []
 		self.objects_filter = []
+		self.list_coord = []
 
 		#print('ЗАБЫЛ')
 	
@@ -115,10 +116,10 @@ class Neuron:
 			data.append(tuple_obj)
 			self.connect_0.interface.running()
 
-			# self.connect_0.camera.running()
-			# tuple_obj = self.find_objects()
-			# data.append(tuple_obj)
-			# self.connect_0.interface.running()
+			self.connect_0.camera.running()
+			tuple_obj = self.find_objects()
+			data.append(tuple_obj)
+			self.connect_0.interface.running()
 		
 			sorted_data = sorted(data, key=lambda x: x[1])
 			max_value_second = max(sorted_data, key=lambda x: x[1])[1]
@@ -243,7 +244,6 @@ class Neuron:
 
 		return self.objects_all
 	
-	
 
 	def compare_images_feature_matching(self, obj):
 		x1 = obj[4]
@@ -318,14 +318,14 @@ class Neuron:
 		image_1_gray = cv2.cvtColor(image_1, cv2.COLOR_BGR2GRAY)
 		image_2_gray = cv2.cvtColor(image_2, cv2.COLOR_BGR2GRAY)
 
-		image_1_gray = cv2.GaussianBlur(image_1_gray, (3, 3), 0)
-		image_2_gray = cv2.GaussianBlur(image_2_gray, (3, 3), 0)
+		# image_1_gray = cv2.GaussianBlur(image_1_gray, (3, 3), 0)
+		# image_2_gray = cv2.GaussianBlur(image_2_gray, (3, 3), 0)
 
-		image_1_gray = cv2.medianBlur(image_1_gray, 3)
-		image_2_gray = cv2.medianBlur(image_2_gray, 3)
+		# image_1_gray = cv2.medianBlur(image_1_gray, 3)
+		# image_2_gray = cv2.medianBlur(image_2_gray, 3)
 
-		cropped_image_1 = image_1_gray[y1 + abs(y1 - yr_center) + 30: y1 + h + 2, x1 + 10 : x1 + w - 10]
-		cropped_image_2 = image_2_gray[y1 + abs(y1 - yr_center) + 30: y1 + h + 2, x1 + 10: x1 + w  - 10]
+		cropped_image_1 = image_1_gray[y1 + abs(y1 - yr_center) + 60: y1 + h + 2, x1 + 10 : x1 + w - 10]
+		cropped_image_2 = image_2_gray[y1 + abs(y1 - yr_center) + 60: y1 + h + 2, x1 + 10: x1 + w  - 10]
 		
 		current_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -370,9 +370,10 @@ class Neuron:
 					print('X limit')
 					continue
 
-				# if yr_center < 345 or yr_center > 460:
-				# 	print('Y limit')
-				# 	continue
+				#if yr_center < 345 or yr_center > 460:
+				if yr_center > 460:
+					print('Y limit')
+					continue
 			
 				for prev_obj in self.memory_objects:
 					prev_status = prev_obj[0]
