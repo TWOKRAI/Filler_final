@@ -262,6 +262,10 @@ msgstr "Möchten Sie die Einstellungen anwenden?"
 msgid "Do you want to make default settings?"
 msgstr "Möchten Sie die Standardeinstellungen verwenden?"
 
+msgid "Do you want to calibrate the system?"
+msgstr "Möchten Sie das System kalibrieren?"
+
+
 #~ msgid "Info 2"
 #~ msgstr "Info 2"
 
@@ -279,3 +283,5 @@ msgstr "Möchten Sie die Standardeinstellungen verwenden?"
 
 #~ msgid "Deutsch"
 #~ msgstr "Deutsch"
+
+

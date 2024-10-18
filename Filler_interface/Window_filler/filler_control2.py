@@ -156,6 +156,9 @@ class Filler_control(Control):
 
         self.info_message(1, 5)
 
+        app.database.update_data('myapp_filler', 'status', False)
+        app.database.update_data('myapp_filler', 'pumping_ready', False)
+
         
     def show(self):
         super().show()
@@ -239,7 +242,10 @@ class Filler_control(Control):
 
     
     def view(self):
-        app.window_list1.show()
+        if app.enable_marker:
+            app.all_enable_off()
+            
+            app.window_list1.show()
         
 
     def label_window_update(self):
@@ -539,18 +545,21 @@ class Filler_control(Control):
 
 
     def minus(self):
-        super().minus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().minus()
 
-        if self.param_list[1] >= 10:
-            self.param_list[1] -= 10
+            self.enable_control()
 
-        
-        self.update()
-        self.enable_control()
+            if self.param_list[1] >= 10:
+                self.param_list[1] -= 10
 
-        self.put_parametrs()
+            
+            self.update()
+            self.enable_control()
+
+            self.put_parametrs()
        
         
     def minus_released(self):
@@ -584,18 +593,21 @@ class Filler_control(Control):
 
 
     def plus(self):
-        super().plus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().plus()
 
-        if self.param_list[1] < 500:
-            self.param_list[1] += 10
+            self.enable_control()
 
-        self.update()
-        self.enable_control()
+            if self.param_list[1] < 500:
+                self.param_list[1] += 10
 
-        self.put_parametrs()
-    
+            self.update()
+            self.enable_control()
+
+            self.put_parametrs()
+        
 
     def plus_released(self):
         super().plus_released()
@@ -628,18 +640,21 @@ class Filler_control(Control):
 
     
     def left(self):
-        super().left()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().left()
 
-        if self.param_list[2] >= 10:
-            self.param_list[2] -= 10
+            self.enable_control()
 
-        
-        self.update()
-        self.enable_control()
+            if self.param_list[2] >= 10:
+                self.param_list[2] -= 10
 
-        self.put_parametrs()
+            
+            self.update()
+            self.enable_control()
+
+            self.put_parametrs()
      
 
     def left_enable(self):
@@ -658,17 +673,20 @@ class Filler_control(Control):
 
 
     def right(self):
-        super().right()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().right()
 
-        if self.param_list[2] < 500:
-            self.param_list[2] += 10
+            self.enable_control()
 
-        self.update()
-        self.enable_control()
+            if self.param_list[2] < 500:
+                self.param_list[2] += 10
 
-        self.put_parametrs()
+            self.update()
+            self.enable_control()
+
+            self.put_parametrs()
 
 
     def right_released(self):
@@ -711,12 +729,15 @@ class Filler_control(Control):
 
 
     def button_start_clicked(self):
-        self.play = not self.play
+        if app.enable_marker:
+            app.all_enable_off()
 
-        if self.play == True:
-            self.show_popup_calibr()
-        else:
-            self.filler_stop()
+            self.play = not self.play
+
+            if self.play == True:
+                self.show_popup_calibr()
+            else:
+                self.filler_stop()
 
 
     def filler_run(self):

@@ -164,6 +164,15 @@ class Neuron:
 		self.id += 1
 
 		return (self.objects_filter, lenght, self.id)
+	
+
+	def find_objects_not_filter(self):
+		objects_list = self.detect_v5(self.connect_0.camera.image_out)
+
+		lenght = len(objects_list)
+		self.id += 1
+
+		return (objects_list, lenght, self.id)
 
 	
 	def detect_v5(self, image):

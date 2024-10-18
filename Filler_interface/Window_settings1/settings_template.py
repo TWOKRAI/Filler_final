@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QSize, QTimer
 from PyQt5.QtGui import QIcon, QFont
 import os
 
-from Filler_interface.app import app, enable_marker_decorator
+from Filler_interface.app import app
 
 
 class Control(QMainWindow):
@@ -77,12 +77,13 @@ class Control(QMainWindow):
         pass
     
     
-    #@enable_marker_decorator('enable_marker')
-    def button_menu_pressed(self):    
-        self.timer.start()
+    def button_menu_pressed(self):
+        if app.enable_marker:
+            app.all_enable_off()
+            
+            self.timer.start()
 
 
-    #@enable_marker_decorator('enable_marker')
     def button_menu_released(self):
         self.button_menu.clearFocus()
         self.setFocus()

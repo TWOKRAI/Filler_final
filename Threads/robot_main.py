@@ -217,6 +217,8 @@ class Robot_filler(QThread):
 
             if self.pump_station.pumping_ready:
                 self.info_message.emit(0, 1)
+            else:
+                self.info_message.emit(1, 1)
 
             QThread.msleep(1000)
             
@@ -226,14 +228,16 @@ class Robot_filler(QThread):
             if not self.filler: break
             self.neuron.threshold = 0.05
             self.neuron.nmsthreshold = 0.05
-            find_tuple = self.neuron.find_objects()
+            find_tuple = self.neuron.find_objects_not_filter()
 
             if find_tuple[1] > 0:
                 index_forget = 0 
 
                 if self.pump_station.pumping_ready:
                     self.info_message.emit(0, 2)
-            
+                else:
+                    self.info_message.emit(1, 2)
+                
                 if self.robot.calibration_ready == False:
                     self.robot.calibration()
 
@@ -260,6 +264,7 @@ class Robot_filler(QThread):
             self.laser.on_off(1)
             QThread.msleep(500)
             self.camera.running()
+            
             self.robot.running()
         
         self.start_state.emit(0)

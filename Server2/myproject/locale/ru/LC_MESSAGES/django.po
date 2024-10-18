@@ -138,7 +138,7 @@ msgstr "Стакан найден"
 
 #: myapp/templates/index.html:68 myapp/templates/index.html:79
 msgid "Filling process in progress"
-msgstr "Процесс наполнения в ходе"
+msgstr "Идет процесс розлива"
 
 #: myapp/templates/index.html:69 myapp/templates/index.html:80
 msgid "The drink is ready"
@@ -262,6 +262,11 @@ msgstr "Вы хотите применить настройки?"
 #: myapp/templates/settings2.html:113
 msgid "Do you want to make default settings?"
 msgstr "Вы хотите сделать настройки по умолчанию?"
+
+
+msgid "Do you want to calibrate the system?"
+msgstr "Вы хотите сделать калибровку системы?"
+
 
 #~ msgid "Info 2"
 #~ msgstr "Инфо 2"

@@ -12,33 +12,30 @@ from .models import Control
 
 def index(request):
     if request.method == 'POST':
-        # Получаем первый объект Filler или создаем новый, если его нет
         filler = Filler.objects.first()
         if not filler:
             filler = Filler()
 
-        # filler.info = 0
-        # filler.info2 = 1
-
-        # Получаем данные из POST-запроса
         drink1 = request.POST.get('drink1', 0)
         drink2 = request.POST.get('drink2', 0)
         status = request.POST.get('status', 'false')
+        pumping_ready = request.POST.get('pumping_ready', 'true')
+        info = request.POST.get('info', filler.info)
+        info2 = request.POST.get('info2', filler.info2)
 
-        # Преобразуем drink1 и drink2 в целые числа, если они не пустые
         drink1 = int(drink1) if drink1 else 0
         drink2 = int(drink2) if drink2 else 0
 
-        # Ограничиваем значения от 0 до 500
         drink1 = max(0, min(500, drink1))
         drink2 = max(0, min(500, drink2))
 
-        # Преобразуем status в булево значение
         status = status.lower() == 'true'
+        pumping_ready = pumping_ready.lower() == 'true'
+        info = int(info)
+        info2 = int(info2)
 
-        print(f"Received data - drink1: {drink1}, drink2: {drink2}, status: {status} {filler.status}")
+        print(f"Received data - drink1: {drink1}, drink2: {drink2}, status: {status}, pumping_ready: {pumping_ready}, info: {info}, info2: {info2}")
 
-        # Проверяем и обновляем значения, если они изменились
         if filler.drink1 != drink1:
             print(f"Drink1 changed from {filler.drink1} to {drink1}")
             filler.drink1 = drink1
@@ -51,7 +48,18 @@ def index(request):
             print(f"Status changed from {filler.status} to {status}")
             filler.status = status
 
-        # Сохраняем изменения
+        if filler.pumping_ready != pumping_ready:
+            print(f"Pumping_ready changed from {filler.pumping_ready} to {pumping_ready}")
+            filler.pumping_ready = pumping_ready
+
+        if filler.info != info:
+            print(f"Info changed from {filler.info} to {info}")
+            filler.info = info
+
+        if filler.info2 != info2:
+            print(f"Info2 changed from {filler.info2} to {info2}")
+            filler.info2 = info2
+
         filler.save()
 
         return JsonResponse({
@@ -59,16 +67,17 @@ def index(request):
             'info': filler.info,
             'info2': filler.info2,
             'drink1': filler.drink1,
-            'drink2': filler.drink2
+            'drink2': filler.drink2,
+            'pumping_ready': filler.pumping_ready
         })
 
-    # Получаем первый объект Filler или создаем новый, если его нет
     filler = Filler.objects.first()
     if not filler:
         filler = Filler()
         filler.save()
 
     return render(request, 'index.html', {'filler': filler})
+
 
 
 def get_data(request):
@@ -84,7 +93,9 @@ def get_data(request):
         'info': filler.info,
         'info2': filler.info2,
         'info3': filler.info3,
+        'pumping_ready': filler.pumping_ready,
     })
+
 
 
 def innotech(request):

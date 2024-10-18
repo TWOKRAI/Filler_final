@@ -183,6 +183,8 @@ class Robot_module(QObject):
 
 		self.enable_status = False
 
+		self.ready_all = False
+
 		#self.connect_0.laser.laser_on = False
 		
 
@@ -624,17 +626,15 @@ class Robot_module(QObject):
 		limit = False
 
 		completed = False
+		self.ready_all = False
 
 		for coord in list_coord:	
 			if self.start == False and self.pumping_find == False:
 				break
 
-			self.enable_motors(True)
-			time.sleep(0.5)
-
 			x, y, z, v = coord
 
-			z = z + 2
+			z = z + 2.6 #2?
 
 			if z > 13: 
 				z = z + 2
@@ -651,6 +651,7 @@ class Robot_module(QObject):
 
 			if list_objects[i][0] == False and limit == True: 
 				self.enable_motors(True)
+				time.sleep(0.5)
 
 				if self.joker >= 2:
 					self.joker_move()

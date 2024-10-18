@@ -12,17 +12,6 @@ from Server2.database_manager import DatabaseManager
 from Filler_interface.Style_windows.style import Style
 
 
-def enable_marker_decorator(marker_attr):
-    def decorator(func):
-        def wrapper(self, *args, **kwargs):
-            if getattr(self, marker_attr):
-                return func(self, *args, **kwargs)
-            else:
-                print(f"{func.__name__} не выполнена, так как {marker_attr} == False")
-        return wrapper
-    return decorator
-
-
 class App(QApplication):
     button_start = pyqtSignal()
     button_stop = pyqtSignal()
@@ -89,6 +78,20 @@ class App(QApplication):
         self.time_database = 1000
         self.timer_database.start(self.time_database)
 
+        self.timer_enable = QTimer(self)    
+        self.timer_enable.setSingleShot(True)  
+        self.timer_enable.timeout.connect(self.all_enable_on)
+        self.enable_marker = True
+
+
+    def all_enable_on(self):
+        self.enable_marker = True
+
+    
+    def all_enable_off(self):
+        self.enable_marker = False
+        self.timer_enable.start(300)
+        
     
     def run(self):
         self.set_style()
@@ -110,7 +113,7 @@ class App(QApplication):
             self.window_main_filler.fullscreen()
             self.window_list1.fullscreen()
             self.window_settings2.fullscreen()
-            self.window_prepare.fullscreen()
+            # self.window_prepare.fullscreen()
             self.window_view.fullscreen()
             self.window_filler.fullscreen()
             self.window_error.fullscreen()
@@ -129,7 +132,6 @@ class App(QApplication):
         #         # if focus_widget:
         #         #     focus_widget.clearFocus()
 
-
         if event.type() == QEvent.MouseButtonPress:
             self.datetime_reset()
             self.database_reset()
@@ -140,6 +142,7 @@ class App(QApplication):
     
 
     def database_update(self):
+    
         self.data_filler = self.database.read_data('myapp_filler')
 
         if self.block_database == False:
@@ -213,7 +216,7 @@ class App(QApplication):
         self.window_main_filler.language(lang_num)
         self.window_list1.language(lang_num)
         self.window_settings2.language(lang_num)
-        self.window_prepare.language(lang_num)
+        # self.window_prepare.language(lang_num)
         self.window_filler.language(lang_num)
         self.window_cip.language(lang_num)
         self.window_robot.language(lang_num)
@@ -272,8 +275,8 @@ class App(QApplication):
         from Filler_interface.Window_settings2.settings2_control import Settings_control
         self.window_settings2 = Settings_control()
 
-        from Filler_interface.Window_prepare.prepare_control import Prepare_control
-        self.window_prepare = Prepare_control()
+        # from Filler_interface.Window_prepare.prepare_control import Prepare_control
+        # self.window_prepare = Prepare_control()
 
         from Filler_interface.Window_view.view_conrtol import View_control
         self.window_view = View_control()
@@ -322,8 +325,8 @@ class App(QApplication):
             self.window_settings2.hide()
             #print(f'close: {self.window_settings2.window_name}')
 
-        if self.window_focus != self.window_prepare.window_name:
-            self.window_prepare.hide()
+        # if self.window_focus != self.window_prepare.window_name:
+        #     self.window_prepare.hide()
             #print(f'close: {self.window_prepare.window_name}')
 
         if self.window_focus != self.window_view.window_name:
@@ -364,9 +367,9 @@ class App(QApplication):
                 self.window_settings2.hide()
                 self.window_settings2.show()
 
-            case self.window_prepare.window_name:
-                self.window_prepare.hide()
-                self.window_prepare.show()
+            # case self.window_prepare.window_name:
+            #     self.window_prepare.hide()
+            #     self.window_prepare.show()
             
             case self.window_view.window_name:
                 self.window_view.close(1)

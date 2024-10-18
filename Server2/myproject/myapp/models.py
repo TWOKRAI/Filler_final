@@ -10,6 +10,7 @@ class Filler(models.Model):
     DEFAULT_INFO = 0
     DEFAULT_INFO2 = 0
     DEFAULT_INFO3 = 0
+    DEFAULT_PUMPING_READY = False
 
     drink1 = models.IntegerField(default=DEFAULT_DRINK1)
     drink2 = models.IntegerField(default=DEFAULT_DRINK2)
@@ -17,7 +18,7 @@ class Filler(models.Model):
     info = models.IntegerField(default=DEFAULT_INFO)
     info2 = models.IntegerField(default=DEFAULT_INFO2)
     info3 = models.IntegerField(default=DEFAULT_INFO3)
-
+    pumping_ready = models.BooleanField(default=DEFAULT_PUMPING_READY)
 
     def save(self, *args, **kwargs):
         if self.drink1 == '':
@@ -30,14 +31,14 @@ class Filler(models.Model):
 
         super().save(*args, **kwargs)
 
-
-    def reset_to_default(self): 
+    def reset_to_default(self):
         self.drink1 = self.DEFAULT_DRINK1
         self.drink2 = self.DEFAULT_DRINK2
         self.status = self.DEFAULT_STATUS
         self.info = self.DEFAULT_INFO
         self.info2 = self.DEFAULT_INFO2
         self.info3 = self.DEFAULT_INFO3
+        self.pumping_ready = self.DEFAULT_PUMPING_READY
         self.save()
 
 

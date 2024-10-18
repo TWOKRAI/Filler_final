@@ -423,36 +423,39 @@ class Cip_control(Control):
 
 
     def minus(self):
-        super().minus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().minus()
 
-        match self.param_num:
-            case 1:
-                if self.param_list[self.param_num] > 1:
-                    self.param_list[self.param_num] -= 1
+            self.enable_control()
 
-                self.put_parametrs()
+            match self.param_num:
+                case 1:
+                    if self.param_list[self.param_num] > 1:
+                        self.param_list[self.param_num] -= 1
 
-            case 2:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+                    self.put_parametrs()
 
-                self.put_parametrs()
+                case 2:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
 
-                self.text_color(None)
+                    self.put_parametrs()
 
-                self.stop_pumps_signal.emit()
-                app.threads.robot_filler.cip_stop()
+                    self.text_color(None)
 
-            case 6:
-                if self.param_list[self.param_num] >= 5:
-                    self.param_list[self.param_num] -= 5
-                
-                self.put_parametrs()
+                    self.stop_pumps_signal.emit()
+                    app.threads.robot_filler.cip_stop()
 
-        self.update()
-        self.enable_control()
+                case 6:
+                    if self.param_list[self.param_num] >= 5:
+                        self.param_list[self.param_num] -= 5
+                    
+                    self.put_parametrs()
+
+            self.update()
+            self.enable_control()
        
         
     def minus_released(self):
@@ -495,34 +498,37 @@ class Cip_control(Control):
 
 
     def plus(self):
-        super().plus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().plus()
 
-        match self.param_num:
-            case 1:
-                if self.param_list[self.param_num] < 10:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-            case 2:
-                if self.param_list[self.param_num] < 1:
-                    if self.move_ready == True:
+            self.enable_control()
+
+            match self.param_num:
+                case 1:
+                    if self.param_list[self.param_num] < 10:
                         self.param_list[self.param_num] += 1
-                        
-                        self.put_parametrs()
+                    
+                    self.put_parametrs()
+                case 2:
+                    if self.param_list[self.param_num] < 1:
+                        if self.move_ready == True:
+                            self.param_list[self.param_num] += 1
+                            
+                            self.put_parametrs()
 
-                        self.text_color((63, 140, 110))
+                            self.text_color((63, 140, 110))
 
-                        app.threads.robot_filler.pump_station.pump_1.speed_k = self.param_list[1] * 10
-                        app.threads.robot_filler.pump_station.pump_2.speed_k = self.param_list[1] * 10
+                            app.threads.robot_filler.pump_station.pump_1.speed_k = self.param_list[1] * 10
+                            app.threads.robot_filler.pump_station.pump_2.speed_k = self.param_list[1] * 10
 
-                        app.threads.robot_filler.cip_run()
-                    else:
-                        self.pop_up_cip()
+                            app.threads.robot_filler.cip_run()
+                        else:
+                            self.pop_up_cip()
 
-        self.update()
-        self.enable_control()
+            self.update()
+            self.enable_control()
     
 
     def plus_released(self):
@@ -557,15 +563,18 @@ class Cip_control(Control):
 
     
     def left(self):
-        if self.param_num > 1:
-            self.param_num -= 1
+        if app.enable_marker:
+            app.all_enable_off()
 
-        #print(self.param_num)
+            if self.param_num > 1:
+                self.param_num -= 1
 
-        self.enable_control()
-        self.update()
+            #print(self.param_num)
 
-        self.memory_write(self.param_list)
+            self.enable_control()
+            self.update()
+
+            self.memory_write(self.param_list)
      
 
     def left_enable(self):
@@ -576,13 +585,16 @@ class Cip_control(Control):
     
 
     def right(self):
-        if self.param_num < len(self.param_list):
-            self.param_num += 1
-        
-        self.enable_control()
-        self.update()
+        if app.enable_marker:
+            app.all_enable_off()
+            
+            if self.param_num < len(self.param_list):
+                self.param_num += 1
+            
+            self.enable_control()
+            self.update()
 
-        self.memory_write(self.param_list)
+            self.memory_write(self.param_list)
 
 
     def right_enable(self):

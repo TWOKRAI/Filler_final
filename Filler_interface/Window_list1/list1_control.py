@@ -20,8 +20,8 @@ class List_control(QMainWindow):
 
         self.window_name = 'list1'
 
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.datetime)
+        # self.timer = QTimer()
+        # self.timer.timeout.connect(self.datetime)
         
         icon_size = QSize(55, 55)
         icon_size_2 = QSize(65, 65)
@@ -114,20 +114,23 @@ class List_control(QMainWindow):
 
 
     def view(self):
-        app.window_view.show()
-        self.hide()
+        if app.enable_marker:
+            app.all_enable_off()
 
-    
-    def datetime(self):
-        app.window_datetime.show_window()
-        self.timer.stop()
+            app.window_view.show()
+            self.hide()
 
 
     def settings(self):
-        app.window_settings2.show()
-        # self.hide()
+        if app.enable_marker:
+            app.all_enable_off()
 
-    
+            app.window_settings2.show()
+
+
     def statistics(self):
-        app.window_qrcode.show()
-        self.hide()
+        if app.enable_marker:
+            app.all_enable_off()
+
+            app.window_qrcode.show()
+            self.hide()

@@ -33,8 +33,8 @@ class Thread():
         app.window_cip.stop_pumps_signal.connect(self.robot_filler.pump_station.stop_pumps)
 
         # app.window_prepare.calibration.connect(self.robot_filler.calibration)
-        app.window_prepare.reset_calibration.connect(self.robot_filler.reset_calibration)
-        app.window_prepare.pumping.connect(self.robot_filler.pumping)
+        # app.window_prepare.reset_calibration.connect(self.robot_filler.reset_calibration)
+        # app.window_prepare.pumping.connect(self.robot_filler.pumping)
 
 
         # app.button_start.connect(self.input_request.block_button_on)
@@ -74,7 +74,7 @@ class Thread():
             # self.input_request.error.connect(self.robot_filler.on_button_error)
             
             
-            self.input_request.no_error.connect(app.window_prepare.reset)
+            self.input_request.no_error.connect(self.robot_filler.reset_calibration)
             self.input_request.no_error.connect(self.robot_filler.no_error_button)
             self.input_request.no_error.connect(app.window_main_filler.show)
 
@@ -96,7 +96,7 @@ class Thread():
             #self.input_request.motor_monitor.button_signal.connect(app.window_start.show)
             self.input_request.motor_monitor.button_signal.connect(self.robot_filler.pump_station.stop_pumps)
             self.input_request.motor_monitor.button_signal.connect(self.robot_filler.filler_stop)
-            self.input_request.motor_monitor.button_signal.connect(app.window_prepare.reset)
+            # self.input_request.motor_monitor.button_signal.connect(app.window_prepare.reset)
             #self.input_request.motor_monitor.button_signal.connect(self.robot_filler.calibration_only_run)
 
             self.input_request.error.connect(app.window_view.close)
@@ -161,7 +161,7 @@ class Thread():
             # app.window_prepare.stop_pumping.connect(self.robot_filler.robot.pump_station.stop_pumps2)
             # app.window_prepare.start_filler.connect(self.robot_filler.run2)
             
-            self.robot_filler.prepare.connect(app.window_prepare.button_calibr_clicked)
+            # self.robot_filler.prepare.connect(app.window_prepare.button_calibr_clicked)
 
             self.robot_filler.start_state.connect(app.window_filler.button_start_update)
 

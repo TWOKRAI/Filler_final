@@ -577,74 +577,77 @@ class Settings_control(Control):
 
 
     def minus(self):
-        super().minus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().minus()
 
-        match self.param_num:
-            case 1:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
-                
-                self.put_parametrs()
-                app.language()
-            case 2:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 3:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 4:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 5:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+            self.enable_control()
 
-                self.put_parametrs()
-                app.recolor()
-            case 6:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+            match self.param_num:
+                case 1:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
+                    
+                    self.put_parametrs()
+                    app.language()
+                case 2:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 3:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 4:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 5:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
 
-                self.put_parametrs()
-                app.recolor()
-            case 7:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+                    self.put_parametrs()
+                    app.recolor()
+                case 6:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
 
-                self.put_parametrs()
-                app.recolor()
-            case 8:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+                    self.put_parametrs()
+                    app.recolor()
+                case 7:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
 
-                self.put_parametrs()
-                app.recolor()
-            case 9:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+                    self.put_parametrs()
+                    app.recolor()
+                case 8:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
 
-                self.put_parametrs()
-                app.recolor()
-            case 10:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+                    self.put_parametrs()
+                    app.recolor()
+                case 9:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
 
-                self.put_parametrs()
-                app.recolor()
+                    self.put_parametrs()
+                    app.recolor()
+                case 10:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
 
-        self.update()
-        self.enable_control()
+                    self.put_parametrs()
+                    app.recolor()
+
+            self.update()
+            self.enable_control()
        
         
     def minus_released(self):
@@ -759,74 +762,77 @@ class Settings_control(Control):
 
 
     def plus(self):
-        super().plus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().plus()
 
-        match self.param_num:
-            case 1:
-                if self.param_list[self.param_num] < 3:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-                app.language()
-            case 2:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
+            self.enable_control()
+
+            match self.param_num:
+                case 1:
+                    if self.param_list[self.param_num] < 3:
+                        self.param_list[self.param_num] += 1
                     
-                self.put_parametrs()
-                app.recolor()
-            case 3:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
+                    self.put_parametrs()
+                    app.language()
+                case 2:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
+                        
+                    self.put_parametrs()
+                    app.recolor()
+                case 3:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
 
-                self.put_parametrs()
-                app.recolor()
-            case 4:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 5:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 6:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 7:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 8:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 9:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 10:
-                if self.param_list[self.param_num] < 255:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-                app.recolor()
+                    self.put_parametrs()
+                    app.recolor()
+                case 4:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 5:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 6:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 7:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 8:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 9:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 10:
+                    if self.param_list[self.param_num] < 255:
+                        self.param_list[self.param_num] += 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
 
-        self.update()
-        self.enable_control()
+            self.update()
+            self.enable_control()
 
 
     def plus_released(self):
@@ -941,13 +947,16 @@ class Settings_control(Control):
 
     
     def left(self):
-        if self.param_num > 1:
-            self.param_num -= 1
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
-        self.update()
+            if self.param_num > 1:
+                self.param_num -= 1
 
-        self.memory_write(self.param_list)
+            self.enable_control()
+            self.update()
+
+            self.memory_write(self.param_list)
      
 
     def left_enable(self):
@@ -958,13 +967,16 @@ class Settings_control(Control):
     
 
     def right(self):
-        if self.param_num < len(self.param_list):
-            self.param_num += 1
+        if app.enable_marker:
+            app.all_enable_off()
+            
+            if self.param_num < len(self.param_list):
+                self.param_num += 1
 
-        self.enable_control()
-        self.update()
+            self.enable_control()
+            self.update()
 
-        self.memory_write(self.param_list)
+            self.memory_write(self.param_list)
 
 
     def right_enable(self):

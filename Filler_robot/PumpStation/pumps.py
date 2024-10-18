@@ -113,6 +113,7 @@ class Pump_station(QObject):
             asyncio.run(self._all_pour_async(ml_1, ml_2))
             self.info_message.emit(0, 4)
         else:
+            self.info_message.emit(1, 3)
             self.bottles_value.emit(30, 30)
             asyncio.run(self._all_pour_async(30, 30))
             self.pumping_ready = True

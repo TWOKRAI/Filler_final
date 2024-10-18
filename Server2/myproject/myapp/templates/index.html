@@ -40,10 +40,10 @@
                 </div>
                 <div class="status-container">
                     <span class="status_circle" id="status_circle"></span>
-                    <span class="status_info" id="status_info">Unknow</span>
+                    <span class="status_info" id="status_info">_</span>
                 </div>
                 <div class="status-container2">
-                    <span class="status_info2" id="status_info2">Unknow</span>
+                    <span class="status_info2" id="status_info2">_</span>
                 </div>
             </form>
         </main>
@@ -56,12 +56,11 @@
     <div id="translations" style="display: none;">
         <span id="trans-on">{% trans 'ON' %}</span>
         <span id="trans-off">{% trans 'OFF' %}</span>
-        
+
         <span id="trans-info-0">{% trans 'System ready' %}</span>
         <span id="trans-info-1">{% trans 'System not calibrated' %}</span>
         <span id="trans-info-2">{% trans 'System error' %}</span>
 
-        
         <span id="trans-info2-0">{% trans ' ' %}</span>
         <span id="trans-info2-1">{% trans 'Place the glass in the work area' %}</span>
         <span id="trans-info2-2">{% trans 'Glass found' %}</span>
@@ -69,10 +68,8 @@
         <span id="trans-info2-4">{% trans 'The drink is ready' %}</span>
 
         <span id="trans-info2-5">{% trans 'Turn on the system and place the glass in the work area for system calibration.' %}</span>
-        
+
         <span id="trans-info2-6">{% trans 'Emergency button pressed' %}</span>
-
-
 
         <span id="trans-info2-7">{% trans 'Scanning in progress, place the glass in the work area' %}</span>
         <span id="trans-info2-8">{% trans 'Glass found' %}</span>
@@ -80,6 +77,15 @@
         <span id="trans-info2-10">{% trans 'The drink is ready' %}</span>
         <span id="trans-info2-11">{% trans 'Switch to "On" and place the glass in the work area' %}</span>
 
+    </div>
+
+    <!-- Всплывающее окно для включение режима калибровки -->
+    <div id="confirmDialog-default" class="confirm-dialog">
+        <div class="confirm-dialog-content">
+            <p>{% trans "Do you want to calibrate the system?" %}</p>
+            <button id="confirmButton-default">{% trans "Confirm" %}</button>
+            <button id="cancelButton-default">{% trans "Cancel" %}</button>
+        </div>
     </div>
     <script src="{% static 'js/DrinkForm.js' %}"></script>
 </body>

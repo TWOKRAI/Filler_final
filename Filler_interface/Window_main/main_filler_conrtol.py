@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QSize, QTimer
 from PyQt5.QtGui import QIcon, QFont
 import os
 
-from Filler_interface.app import app, enable_marker_decorator
+from Filler_interface.app import app
 
 
 class Main_filler_control(QMainWindow):
@@ -92,12 +92,6 @@ class Main_filler_control(QMainWindow):
 
         self.set_icons()
 
-        self.timer_enable = QTimer(self)
-        self.timer_enable.setSingleShot(True)  
-        self.timer_enable.timeout.connect(self.all_enable_on)
-        self.timer_enable.start(500) 
-        self.enable_marker = True
-
 
     def fullscreen(self):        
         self.setWindowState(Qt.WindowFullScreen)
@@ -114,8 +108,6 @@ class Main_filler_control(QMainWindow):
         #app.close_windows()
 
         QTimer.singleShot(500, self.no_focus_button)
-
-        self.all_enable_off()
 
 
     def show_animation(self):
@@ -161,73 +153,69 @@ class Main_filler_control(QMainWindow):
         self.button_view.clearFocus()
         self.button_cip.clearFocus()
         
-    
-    def all_enable_on(self):
-        self.enable_marker = True
 
-    
-    def all_enable_off(self):
-        self.enable_marker = False
-        self.timer_enable.start()
-
-
-    #@enable_marker_decorator('enable_marker')
     def start(self):
-        self.button_start.clearFocus()
-        self.setFocus()
-        self.all_enable_off()
+        if app.enable_marker:
+            app.all_enable_off()
+
+            self.button_start.clearFocus()
+            self.setFocus()
+            
+            # app.window_prepare.hide()
+            # app.window_prepare.show()
+
+            app.window_filler.hide()
+            app.window_filler.show()
+
+            #self.setFocus()
+            #self.hide()
         
-        # app.window_prepare.hide()
-        # app.window_prepare.show()
 
-        app.window_filler.hide()
-        app.window_filler.show()
-
-        #self.setFocus()
-        #self.hide()
-        
-
-    #@enable_marker_decorator('enable_marker')
     def robot(self):
-        self.button_robot.clearFocus()
-        self.setFocus()
-        self.all_enable_off()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        app.window_robot.show()
-        #self.setFocus()
-        #self.hide()
+            self.button_robot.clearFocus()
+            self.setFocus()
+
+            app.window_robot.show()
+            #self.setFocus()
+            #self.hide()
     
 
-    #@enable_marker_decorator('enable_marker')
     def settings(self):
-        self.button_settings.clearFocus()
-        self.setFocus()
-        self.all_enable_off()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        app.window_settings2.hide()
-        app.window_settings2.show()
-        #self.hide()
+            self.button_settings.clearFocus()
+            self.setFocus()
+
+            app.window_settings2.hide()
+            app.window_settings2.show()
+            #self.hide()
        
     
-    #@enable_marker_decorator('enable_marker')
     def view(self):
-        self.button_view.clearFocus()
-        self.all_enable_off()
+        if app.enable_marker:
+            app.all_enable_off()
+    
+            self.button_view.clearFocus()
 
-        self.setFocus()
-        app.window_list1.show()
-        
-        #self.hide()
+            self.setFocus()
+            app.window_list1.show()
+            
+            #self.hide()
 
 
-    #@enable_marker_decorator('enable_marker')
     def cip(self):
-        self.button_cip.clearFocus()
-        self.setFocus()
-        self.all_enable_off()
+        if app.enable_marker:
+            app.all_enable_off()
+    
+            self.button_cip.clearFocus()
+            self.setFocus()
 
-        app.window_cip.hide()
-        app.window_cip.show()
+            app.window_cip.hide()
+            app.window_cip.show()
 
-        #self.hide()
+            #self.hide()
 

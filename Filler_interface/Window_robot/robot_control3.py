@@ -3,7 +3,7 @@ from PyQt5.QtGui import QIcon, QFont
 import os
 
 from Lib.memory import Memory
-from Filler_interface.app import app, enable_marker_decorator
+from Filler_interface.app import app
 
 from Filler_interface.Window_settings1.settings_template import Control
 
@@ -134,22 +134,25 @@ class Robot_control(Control):
 
 
     def show_popup(self):
-        self.button_reset.clearFocus()
-        self.setFocus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        pop_show_text = {
-            0: 'Вы хотите сделать параметры по умолчанию?',
-            1: 'Do you want to make the settings default?',
-            2: 'Möchten Sie die Einstellungen als Standard festlegen?',
-        }
+            self.button_reset.clearFocus()
+            self.setFocus()
 
-        app.window_pop_up.text = pop_show_text
+            pop_show_text = {
+                0: 'Вы хотите сделать параметры по умолчанию?',
+                1: 'Do you want to make the settings default?',
+                2: 'Möchten Sie die Einstellungen als Standard festlegen?',
+            }
 
-        if not app.window_pop_up.isVisible():
-            app.window_pop_up.show(self.reset)
-        else:
-            app.window_pop_up.hide()
-            app.window_pop_up.show(self.reset)
+            app.window_pop_up.text = pop_show_text
+
+            if not app.window_pop_up.isVisible():
+                app.window_pop_up.show(self.reset)
+            else:
+                app.window_pop_up.hide()
+                app.window_pop_up.show(self.reset)
 
 
     def update(self):
@@ -176,12 +179,10 @@ class Robot_control(Control):
         self.memory_write(self.param_list)
         
 
-    #@enable_marker_decorator('enable_marker')
     def button_reset_pressed(self):
         self.timer_exit.start()
 
 
-    #@enable_marker_decorator('enable_marker')
     def button_reset_released(self):
         self.timer_exit.stop()
 
@@ -544,50 +545,48 @@ class Robot_control(Control):
 
 
     def minus(self):
-        super().minus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().minus()
 
-        match self.param_num:
-            case 1:
-                if self.param_list[self.param_num] > 1:
-                    self.param_list[self.param_num] -= 1
-                
-                self.put_parametrs()
-                app.language()
-            case 2:
-                if self.param_list[self.param_num] > 1:
-                    self.param_list[self.param_num] -= 1
-                
-                self.put_parametrs()
-                app.recolor()
-            case 3:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+            self.enable_control()
 
-                self.put_parametrs()
-            case 4:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
+            match self.param_num:
+                case 1:
+                    if self.param_list[self.param_num] > 1:
+                        self.param_list[self.param_num] -= 1
+                    
+                    self.put_parametrs()
+                    app.language()
+                case 2:
+                    if self.param_list[self.param_num] > 1:
+                        self.param_list[self.param_num] -= 1
+                    
+                    self.put_parametrs()
+                    app.recolor()
+                case 3:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
 
-                self.put_parametrs()
-            case 5:
-                if self.param_list[self.param_num] > 0:
-                    self.param_list[self.param_num] -= 1
-                  
-                self.put_parametrs()
+                    self.put_parametrs()
+                case 4:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
+
+                    self.put_parametrs()
+                case 5:
+                    if self.param_list[self.param_num] > 0:
+                        self.param_list[self.param_num] -= 1
+                    
+                    self.put_parametrs()
 
 
-        self.update()
-        self.enable_control()
+            self.update()
+            self.enable_control()
 
-        # print('click') 
-       
-    
-    #@enable_marker_decorator('enable_marker')
+
     def minus_released(self):
-        self.button_minus.clearFocus()
-        self.setFocus()
         super().minus_released()
 
         match self.param_num:
@@ -603,6 +602,9 @@ class Robot_control(Control):
         self.update()
 
         self.memory_write(self.param_list)
+
+        self.button_minus.clearFocus()
+        self.setFocus()
 
     
     def minus_enable(self):
@@ -639,48 +641,47 @@ class Robot_control(Control):
 
 
     def plus(self):
-        super().plus()
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
+            super().plus()
 
-        match self.param_num:
-            case 1:
-                if self.param_list[self.param_num] < 100:
-                    self.param_list[self.param_num] += 1
-                
-                self.put_parametrs()
-            case 2:
-                if self.param_list[self.param_num] < 10:
-                    self.param_list[self.param_num] += 1
+            self.enable_control()
+
+            match self.param_num:
+                case 1:
+                    if self.param_list[self.param_num] < 100:
+                        self.param_list[self.param_num] += 1
                     
-                self.put_parametrs()
-            case 3:
-                if self.param_list[self.param_num] < 2:
-                    self.param_list[self.param_num] += 1
+                    self.put_parametrs()
+                case 2:
+                    if self.param_list[self.param_num] < 10:
+                        self.param_list[self.param_num] += 1
+                        
+                    self.put_parametrs()
+                case 3:
+                    if self.param_list[self.param_num] < 2:
+                        self.param_list[self.param_num] += 1
 
-                self.put_parametrs()
+                    self.put_parametrs()
 
-            case 4:
-                if self.param_list[self.param_num] < 1:
-                    self.param_list[self.param_num] += 1
+                case 4:
+                    if self.param_list[self.param_num] < 1:
+                        self.param_list[self.param_num] += 1
 
-                self.put_parametrs()
+                    self.put_parametrs()
 
-            case 5:
-                if self.param_list[self.param_num] < 1:
-                    self.param_list[self.param_num] += 1
+                case 5:
+                    if self.param_list[self.param_num] < 1:
+                        self.param_list[self.param_num] += 1
 
-                self.put_parametrs()
+                    self.put_parametrs()
 
-        self.update()
-        self.enable_control()
+            self.update()
+            self.enable_control()
     
 
-    #@enable_marker_decorator('enable_marker')
     def plus_released(self):
-        self.button_plus.clearFocus()
-        self.setFocus()
-
         super().plus_released()
 
         match self.param_num:
@@ -731,18 +732,21 @@ class Robot_control(Control):
                 else:
                     self.button_plus.setEnabled(True)
 
-    
+
     def left(self):
-        if self.param_num > 1:
-            self.param_num -= 1
+        if app.enable_marker:
+            app.all_enable_off()
 
-        # print(self.param_num)
+            if self.param_num > 1:
+                self.param_num -= 1
 
-        self.enable_control()
-        self.update()
+            # print(self.param_num)
 
-        self.memory_write(self.param_list)
-     
+            self.enable_control()
+            self.update()
+
+            self.memory_write(self.param_list)
+        
 
     def left_enable(self):
         if self.param_num <= 1:
@@ -752,13 +756,16 @@ class Robot_control(Control):
     
 
     def right(self):
-        if self.param_num < len(self.param_list):
-            self.param_num += 1
+        if app.enable_marker:
+            app.all_enable_off()
 
-        self.enable_control()
-        self.update()
+            if self.param_num < len(self.param_list):
+                self.param_num += 1
 
-        self.memory_write(self.param_list)
+            self.enable_control()
+            self.update()
+
+            self.memory_write(self.param_list)
 
 
     def right_enable(self):

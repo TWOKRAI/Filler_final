@@ -31,10 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-
     const color_green = '#30700b'
-    const color_orange = '#f19101' 
-
+    const color_orange = '#f19101'
 
     function updateStatus(status) {
         statusText.textContent = status ? translations.on : translations.off;
@@ -43,17 +41,21 @@ document.addEventListener('DOMContentLoaded', function() {
         statusInput.value = status;
     }
 
-
     function updateStatusInfo(info) {
         const statusInfo = document.getElementById('status_info');
         const statusCircle = document.getElementById('status_circle');
 
         statusInfo.textContent = translations.info[info];
+    }
+
+    function updateStatusInfoColor(info) {
+        const statusInfo = document.getElementById('status_info');
+        const statusCircle = document.getElementById('status_circle');
 
         switch (info) {
             case 0:
                 statusInfo.style.color = color_green;
-                statusCircle.style.backgroundColor = color_green; 
+                statusCircle.style.backgroundColor = color_green;
                 break;
             case 1:
                 statusInfo.style.color = color_orange;
@@ -70,11 +72,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function updateStatusInfoSize(info) {
+        const statusInfo = document.getElementById('status_info');
+
+        switch (info) {
+            case 0:
+                statusInfo.style.fontSize = '16px';
+                break;
+            case 1:
+                statusInfo.style.fontSize = '15px';
+                break;
+            case 2:
+                statusInfo.style.fontSize = '16px';
+                break;
+            default:
+                statusInfo.style.fontSize = '16px';
+        }
+    }
 
     function updateStatusInfo2(info) {
         const statusInfo2 = document.getElementById('status_info2');
 
         statusInfo2.textContent = translations.info2[info]
+    }
+
+    function updateStatusInfo2Color(info) {
+        const statusInfo2 = document.getElementById('status_info2');
+
+        switch (info) {
+            case 0:
+                statusInfo2.style.color = color_green;
+                break;
+            case 1:
+                statusInfo2.style.color = color_orange;
+                break;
+            case 2:
+                statusInfo2.style.color = 'red';
+                break;
+            default:
+                statusInfo2.style.color = 'black';
+        }
+
+    }
+
+    function updateStatusInfo2Size(info) {
+        const statusInfo2 = document.getElementById('status_info2');
 
         switch (info) {
             case 0:
@@ -82,19 +124,16 @@ document.addEventListener('DOMContentLoaded', function() {
             case 2:
             case 3:
             case 4:
-                statusInfo2.style.color = color_green;
+            case 6:
+                statusInfo2.style.fontSize = '15px';
                 break;
-            case 5:    
-                statusInfo2.style.color = color_orange;
-                break;
-            case 6:    
-                statusInfo2.style.color = 'red';
+            case 5:
+                statusInfo2.style.fontSize = '14px';
                 break;
             default:
-                statusInfo2.style.color = 'black'; 
+                statusInfo2.style.fontSize = '16px';
         }
     }
-
 
     function validateInput(input) {
         let value = parseFloat(input.value);
@@ -115,7 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
         input.dispatchEvent(event);
     }
 
-
     function sendData(formData) {
         fetch('', {
             method: 'POST',
@@ -128,12 +166,17 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             console.log('Response data:', data);
             updateStatus(data.status);
+
             updateStatusInfo(data.info);
+            updateStatusInfoColor(data.info);
+            updateStatusInfoSize(data.info);
+
             updateStatusInfo2(data.info2);
+            updateStatusInfo2Color(data.info);
+            updateStatusInfo2Size(data.info2);
         })
         .catch(error => console.error('Error:', error));
     }
-
 
     function updateData() {
         $.ajax({
@@ -144,8 +187,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 drink2Input.value = data.drink2;
 
                 updateStatus(data.status);
+
                 updateStatusInfo(data.info);
+                updateStatusInfoColor(data.info);
+                updateStatusInfoSize(data.info);
+
                 updateStatusInfo2(data.info2);
+                updateStatusInfo2Color(data.info);
+                updateStatusInfo2Size(data.info2);
             },
             error: function(error) {
                 console.error('Error fetching data:', error);
@@ -153,40 +202,111 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function showConfirmDialog(callback) {
+        const confirmDialog = document.getElementById('confirmDialog-default');
+        confirmDialog.style.display = 'block';
+
+        document.getElementById('confirmButton-default').onclick = function() {
+            callback(true);
+            confirmDialog.style.display = 'none';
+        };
+
+        document.getElementById('cancelButton-default').onclick = function() {
+            callback(false);
+            confirmDialog.style.display = 'none';
+        };
+    }
+
+    let updateInterval;
+    let inactivityTimeout;
+
+    function startUpdateInterval() {
+        if (!updateInterval) {
+            updateInterval = setInterval(updateData, 2100);
+        }
+    }
+
+    function stopUpdateInterval() {
+        clearInterval(updateInterval);
+        updateInterval = null;
+    }
+
+    function resetInactivityTimeout() {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(stopUpdateInterval, 60000);
+    }
+
+    function handleUserActivity() {
+        resetInactivityTimeout();
+        startUpdateInterval();
+    }
 
     if (drink1Input && drink2Input && statusInput) {
         drink1Input.addEventListener('input', function() {
             validateInput(drink1Input);
+            handleUserActivity();
         });
 
         drink2Input.addEventListener('input', function() {
             validateInput(drink2Input);
+            handleUserActivity();
         });
 
         drink1Input.addEventListener('change', function() {
             console.log('Drink1 changed:', drink1Input.value);
             const formData = new FormData(document.getElementById('drinkForm'));
             sendData(formData);
+            handleUserActivity();
         });
 
         drink2Input.addEventListener('change', function() {
             console.log('Drink2 changed:', drink2Input.value);
             const formData = new FormData(document.getElementById('drinkForm'));
             sendData(formData);
+            handleUserActivity();
         });
 
-        statusSwitch.addEventListener('change', function() {
-            console.log('statusSwitch changed:', statusSwitch.checked);
-            const formData = new FormData(document.getElementById('drinkForm'));
-            formData.append('status', statusSwitch.checked);
-            sendData(formData);
-        });
+        function handleStatusChange() {
+            if (statusSwitch.checked) {
+                showConfirmDialog(function(confirmed) {
+                    const formData = new FormData(document.getElementById('drinkForm'));
+                    formData.append('status', true);
+                    if (confirmed) {
+                        formData.append('pumping_ready', false);
+                        formData.append('drink1', 30);
+                        formData.append('drink2', 30);
+                        formData.append('info', 1);
+                        formData.append('info2', 1);
+                    } else {
+                        formData.append('pumping_ready', true);
+                        formData.append('info', 0);
+                        formData.append('info2', 1);
+                    }
+                    sendData(formData);
+                    statusSwitch.checked = true; // Установить состояние свитча после подтверждения
+                });
+                statusSwitch.checked = false; // Временно отключить состояние свитча
+            } else {
+                const formData = new FormData(document.getElementById('drinkForm'));
+                formData.append('status', false);
+                sendData(formData);
+            }
+            handleUserActivity();
+        }
+
+        statusSwitch.addEventListener('change', handleStatusChange);
 
         updateData();
+        startUpdateInterval();
+        resetInactivityTimeout();
+
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                handleUserActivity();
+            }
+        });
 
     } else {
         console.error('One or more elements are missing in the DOM.');
     }
-
-    setInterval(updateData, 2000);
 });

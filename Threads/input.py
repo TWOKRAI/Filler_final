@@ -107,7 +107,7 @@ class Input_request(QThread):
       
         self.error.connect(self.connect_0.robot_filler.error_button)
  
-        self.no_error.connect(app.window_prepare.reset)
+        # self.no_error.connect(app.window_prepare.reset)
         self.no_error.connect(self.connect_0.robot_filler.no_error_button)
         self.no_error.connect(app.window_main_filler.show)
 

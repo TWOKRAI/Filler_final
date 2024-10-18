@@ -1,6 +1,6 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton
-from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal
+from PyQt5.QtCore import Qt, pyqtSlot, pyqtSignal, QTimer
 from PyQt5.QtGui import QPixmap
 import os
 import numpy as np
@@ -44,9 +44,18 @@ class View_control(QMainWindow):
 
         self.view2 = False
 
+        self.timer_enable = QTimer(self)    
+        self.timer_enable.setSingleShot(True)  
+        self.timer_enable.timeout.connect(self.enable_on)
+        self.enable_marker = False
+
 
     def fullscreen(self):        
         self.setWindowState(Qt.WindowFullScreen)
+
+
+    def enable_on(self):
+        self.enable_marker = True
 
 
     def show(self, id = 0):
@@ -81,22 +90,26 @@ class View_control(QMainWindow):
         else:
             self.hide()
             super().show()
+        
+        self.enable_marker = False
+        self.timer_enable.start(1000)
 
 
     def close(self):
-        self.view_stop.emit()
+        if self.enable_marker:
+            self.view_stop.emit()
 
-        stylesheet = app.styleSheet()
-        new_stylesheet = stylesheet.replace(
-        'background-color: None',
-        'background-color: qlineargradient(x1: 0, y1: 1, x2: 0, y2: 0, stop: 0 white, stop: 0.4 #DCDCDC, stop: 0.9 #878787);'
-        )
-        
-        app.setStyleSheet(new_stylesheet)
+            stylesheet = app.styleSheet()
+            new_stylesheet = stylesheet.replace(
+            'background-color: None',
+            'background-color: qlineargradient(x1: 0, y1: 1, x2: 0, y2: 0, stop: 0 white, stop: 0.4 #DCDCDC, stop: 0.9 #878787);'
+            )
+            
+            app.setStyleSheet(new_stylesheet)
 
-        self.focus_window = False
-        
-        self.hide()
+            self.focus_window = False
+            
+            self.hide()
         
 
 

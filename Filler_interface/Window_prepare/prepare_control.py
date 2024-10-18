@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt, QSize, QTimer, QThread, pyqtSignal
 from PyQt5.QtGui import QIcon, QFont
 import os
 
-from Filler_interface.app import app, enable_marker_decorator
+from Filler_interface.app import app
 
 
 class Prepare_control(QMainWindow):
